@@ -15,7 +15,6 @@ function calculatePoints() {
     document.getElementById('amexValuation').value = '$' + totalValuation.toFixed(2);
 
     document.getElementById('results').classList.remove('hidden');
-    nextSection(); // Automatically move to the next section
 }
 
 function nextSection() {
