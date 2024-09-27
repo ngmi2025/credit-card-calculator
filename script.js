@@ -15,31 +15,27 @@ function calculatePoints() {
     document.getElementById('amexValuation').value = '$' + totalValuation.toFixed(2);
 
     document.getElementById('results').classList.remove('hidden');
+    nextSection(); // Automatically move to the next section
 }
 
 function nextSection() {
-    // Validate inputs
-    const inputs = document.querySelectorAll('input[required], select[required]');
-    let isValid = true;
+    const currentSection = document.querySelector('.section:not(.hidden)');
+    const nextSection = currentSection.nextElementSibling;
 
-    inputs.forEach(input => {
-        if (!input.value || (input.type === 'text' && input.value === '$0')) {
-            isValid = false;
-            input.classList.add('error');
-        } else {
-            input.classList.remove('error');
+    if (nextSection) {
+        currentSection.classList.add('hidden');
+        nextSection.classList.remove('hidden');
+
+        // Update progress bar
+        const progress = document.getElementById('progress');
+        if (nextSection.id === 'section2') {
+            progress.style.width = '66.66%';
+            document.querySelectorAll('.step')[1].classList.add('active');
+        } else if (nextSection.id === 'results') {
+            progress.style.width = '100%';
+            document.querySelectorAll('.step')[2].classList.add('active');
         }
-    });
-
-    if (!isValid) {
-        alert('Please fill in all required fields.');
-        return;
     }
-
-    // Here you would implement the logic to move to the next section
-    // For now, we'll just update the progress bar
-    document.getElementById('progress').style.width = '66.66%';
-    document.querySelectorAll('.step')[1].classList.add('active');
 }
 
 // Show/hide custom input fields based on dropdown selection
