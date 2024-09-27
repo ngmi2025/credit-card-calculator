@@ -90,7 +90,7 @@ h1 {
 .question.split {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .question.split label {
@@ -98,9 +98,14 @@ h1 {
     margin-right: 20px;
 }
 
-.question.split select,
+.question.split .input-group,
 .question.split .input-wrapper {
     flex: 0 0 40%;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
 }
 
 label {
@@ -156,6 +161,10 @@ input[type="text"]::placeholder {
     color: var(--secondary-text-color);
 }
 
+.custom-input {
+    margin-top: 10px;
+}
+
 .button-container {
     display: flex;
     justify-content: flex-end;
@@ -196,13 +205,13 @@ input[type="text"]::placeholder {
     }
 
     .question.split label,
-    .question.split select,
+    .question.split .input-group,
     .question.split .input-wrapper {
         width: 100%;
         margin-right: 0;
     }
 
-    .question.split select,
+    .question.split .input-group,
     .question.split .input-wrapper {
         margin-top: 10px;
     }
