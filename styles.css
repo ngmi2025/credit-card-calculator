@@ -5,20 +5,36 @@
     --secondary-text-color: #808080;
     --background-color: #fff;
     --border-color: #e0e0e0;
+    --error-color: #d32f2f;
+    --success-color: #388e3c;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background-color: var(--background-color);
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    background-color: var(--background-color);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
 }
 
-h1, h2 {
+h1 {
     color: var(--primary-color);
+    text-align: center;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .progress-bar {
@@ -26,14 +42,31 @@ h1, h2 {
     background-color: var(--border-color);
     border-radius: 5px;
     margin-bottom: 20px;
+    position: relative;
 }
 
 .progress {
-    width: 25%;
+    width: 33.33%;
     height: 20px;
     background-color: var(--primary-color);
     border-radius: 5px;
     transition: width 0.5s ease-in-out;
+}
+
+.step-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.step {
+    font-size: 14px;
+    color: var(--secondary-text-color);
+}
+
+.step.active {
+    color: var(--primary-color);
+    font-weight: bold;
 }
 
 .section {
@@ -60,9 +93,32 @@ select, input[type="number"], input[type="text"] {
     border: 1px solid var(--border-color);
     border-radius: 5px;
     font-size: 16px;
+    background-color: #fff;
 }
 
-button {
+select:focus, input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0,119,190,0.2);
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.currency {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--secondary-text-color);
+}
+
+input[type="number"] {
+    padding-left: 25px;
+}
+
+.cta-button {
     background-color: var(--primary-color);
     color: white;
     border: none;
@@ -71,12 +127,26 @@ button {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 20px auto 0;
 }
 
-button:hover {
-    background-color: #0056b3;
+.cta-button:hover {
+    background-color: #005fa3;
 }
 
 .hidden {
     display: none;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .section {
+        padding: 15px;
+    }
 }
