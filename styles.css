@@ -81,13 +81,28 @@ h1 {
     margin-bottom: 20px;
 }
 
+.question.split {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.question.split label {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.question.split select {
+    flex: 1;
+}
+
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-select, input[type="number"], input[type="text"] {
+select, input[type="text"] {
     width: 100%;
     padding: 10px;
     border: 1px solid var(--border-color);
@@ -104,18 +119,27 @@ select:focus, input:focus {
 
 .input-wrapper {
     position: relative;
+    width: 50%;
 }
 
-.currency {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+input[type="text"] {
+    padding-left: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="text"]::placeholder {
     color: var(--secondary-text-color);
 }
 
+/* Remove increase/decrease arrows for number inputs */
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
 input[type="number"] {
-    padding-left: 25px;
+    -moz-appearance: textfield;
 }
 
 .cta-button {
@@ -148,5 +172,20 @@ input[type="number"] {
     
     .section {
         padding: 15px;
+    }
+
+    .question.split {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .question.split label,
+    .question.split select {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .input-wrapper {
+        width: 100%;
     }
 }
