@@ -84,12 +84,10 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
 }
 
 .question.split label {
     flex: 0 0 60%;
-    margin-right: 20px;
 }
 
 .input-group {
@@ -97,13 +95,12 @@ h1 {
     align-items: center;
 }
 
-input[type="text"], select {
+select, input[type="text"] {
     width: 100%;
     padding: 10px;
     border: 1px solid var(--border-color);
     border-radius: 5px;
     font-size: 1em;
-    background-color: white;
 }
 
 select {
@@ -112,7 +109,6 @@ select {
     background-repeat: no-repeat;
     background-position: right 10px top 50%;
     background-size: 20px auto;
-    padding-right: 30px;
 }
 
 .custom-input {
@@ -121,7 +117,7 @@ select {
 
 .input-wrapper {
     position: relative;
-    width: 40%;
+    flex: 0 0 40%;
 }
 
 .input-wrapper::before {
@@ -177,24 +173,6 @@ select {
     cursor: default;
 }
 
-.slider-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 40%;
-}
-
-input[type="range"] {
-    width: 100%;
-    margin: 10px 0 5px;
-}
-
-.slider-value {
-    font-size: 0.9em;
-    color: var(--secondary-text-color);
-    align-self: flex-end;
-}
-
 @media (max-width: 600px) {
     .container {
         padding: 10px;
@@ -211,15 +189,13 @@ input[type="range"] {
 
     .question.split label,
     .question.split .input-group,
-    .question.split .input-wrapper,
-    .question.split .slider-container {
+    .question.split .input-wrapper {
         width: 100%;
         margin-right: 0;
     }
 
     .question.split .input-group,
-    .question.split .input-wrapper,
-    .question.split .slider-container {
+    .question.split .input-wrapper {
         margin-top: 10px;
     }
 }
