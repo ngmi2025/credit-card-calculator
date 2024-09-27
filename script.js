@@ -4,7 +4,7 @@ function nextSection() {
     let isValid = true;
 
     inputs.forEach(input => {
-        if (!input.value) {
+        if (!input.value || (input.type === 'text' && input.value === '$0')) {
             isValid = false;
             input.classList.add('error');
         } else {
@@ -28,9 +28,12 @@ document.getElementById('homeAirport').addEventListener('change', function() {
     document.getElementById('customHomeAirport').classList.toggle('hidden', this.value !== 'custom');
 });
 
-// Add error class on invalid input
+// Add error class on invalid input and handle currency formatting
 document.querySelectorAll('input[required], select[required]').forEach(input => {
     input.addEventListener('blur', function() {
-        this.classList.toggle('error', !this.value);
+        if (this.type === 'text' && this.value && !this.value.startsWith('$')) {
+            this.value = '$' + this.value;
+        }
+        this.classList.toggle('error', !this.value || this.value === '$0');
     });
 });
