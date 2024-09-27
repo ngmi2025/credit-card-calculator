@@ -23,20 +23,17 @@ function nextSection() {
     const section2 = document.getElementById('section2');
     const progress = document.getElementById('progress');
 
-    if (!section1.classList.contains('hidden')) {
-        // We're on the first section, calculate points and show results
-        calculatePoints();
-    } else if (!results.classList.contains('hidden')) {
-        // We're on the results section, move to section 2
+    if (!section2.classList.contains('hidden')) {
+        // We're on section 2, move to final results (not implemented yet)
+        progress.style.width = '100%';
+        document.querySelectorAll('.step')[2].classList.add('active');
+    } else {
+        // We're on the first section or results, move to section 2
         section1.classList.add('hidden');
         results.classList.add('hidden');
         section2.classList.remove('hidden');
         progress.style.width = '66.66%';
         document.querySelectorAll('.step')[1].classList.add('active');
-    } else if (!section2.classList.contains('hidden')) {
-        // We're on section 2, move to final results (not implemented yet)
-        progress.style.width = '100%';
-        document.querySelectorAll('.step')[2].classList.add('active');
     }
 }
 
