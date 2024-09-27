@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Value Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        #results {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Credit Card Value Calculator</h1>
+    <p>This tool provides a rough estimate of a credit card's value based on your personal usage and preferences.</p>
+    
+    <div id="calculator">
+        <!-- Travel Profile Questions -->
+        <div class="question">
+            <label for="travelFrequency">How many times do you travel per year?</label>
+            <select id="travelFrequency">
+                <option value="0">0-1</option>
+                <option value="2">2-3</option>
+                <option value="4">4-6</option>
+                <option value="7">7+</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="annualSpend">Estimated annual spend on travel and dining:</label>
+            <input type="number" id="annualSpend" min="0" step="1000" value="5000">
+        </div>
+
+        <!-- Card Benefits Valuation -->
+        <div class="question">
+            <label for="airlineCredit">How much do you value the $200 airline incidental credit?</label>
+            <input type="number" id="airlineCredit" min="0" max="200" value="140">
+            <span class="tooltip">?</span>
+        </div>
+
+        <div class="question">
+            <label for="loungeAccess">How much do you value airport lounge access?</label>
+            <input type="number" id="loungeAccess" min="0" value="0">
+            <span class="tooltip">?</span>
+        </div>
+
+        <!-- Add more benefit questions here -->
+
+        <button onclick="calculateValue()">Calculate Value</button>
+    </div>
+
+    <div id="results" class="hidden">
+        <h2>Your Personalized Card Value</h2>
+        <p>Total Value: $<span id="totalValue"></span></p>
+        <p>Annual Fee: $<span id="annualFee">695</span></p>
+        <p>Net Value: $<span id="netValue"></span></p>
+    </div>
+
+    <script>
+        function calculateValue() {
+            const travelFrequency = parseInt(document.getElementById('travelFrequency').value);
+            const annualSpend = parseInt(document.getElementById('annualSpend').value);
+            const airlineCredit = parseInt(document.getElementById('airlineCredit').value);
+            const loungeAccess = parseInt(document.getElementById('loungeAccess').value);
+
+            // Calculate lounge value based on travel frequency
+            const loungeValue = travelFrequency * 50;
+            document.getElementById('loungeAccess').value = loungeValue;
+
+            // Calculate points earned (assuming 5x on travel and dining)
+            const pointsEarned = annualSpend * 5;
+            const pointsValue = pointsEarned * 0.02; // Assuming 2 cents per point value
+
+            const totalValue = airlineCredit + loungeValue + pointsValue;
+            const annualFee = 695;
+            const netValue = totalValue - annualFee;
+
+            document.getElementById('totalValue').textContent = totalValue.toFixed(2);
+            document.getElementById('netValue').textContent = netValue.toFixed(2);
+            document.getElementById('results').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
