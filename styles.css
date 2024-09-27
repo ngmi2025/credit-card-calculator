@@ -78,7 +78,13 @@ h1 {
 }
 
 .question {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.question:last-child {
+    border-bottom: none;
 }
 
 .question.split {
@@ -92,8 +98,9 @@ h1 {
     margin-right: 20px;
 }
 
-.question.split select {
-    flex: 1;
+.question.split select,
+.question.split .input-wrapper {
+    flex: 0 0 40%;
 }
 
 label {
@@ -119,7 +126,7 @@ select:focus, input:focus {
 
 .input-wrapper {
     position: relative;
-    width: 50%;
+    width: 100%;
 }
 
 input[type="text"] {
@@ -130,16 +137,6 @@ input[type="text"] {
 
 input[type="text"]::placeholder {
     color: var(--secondary-text-color);
-}
-
-/* Remove increase/decrease arrows for number inputs */
-input[type="number"]::-webkit-inner-spin-button, 
-input[type="number"]::-webkit-outer-spin-button { 
-    -webkit-appearance: none; 
-    margin: 0; 
-}
-input[type="number"] {
-    -moz-appearance: textfield;
 }
 
 .cta-button {
@@ -180,12 +177,14 @@ input[type="number"] {
     }
 
     .question.split label,
-    .question.split select {
+    .question.split select,
+    .question.split .input-wrapper {
         width: 100%;
         margin-right: 0;
     }
 
-    .input-wrapper {
-        width: 100%;
+    .question.split select,
+    .question.split .input-wrapper {
+        margin-top: 10px;
     }
 }
