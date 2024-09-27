@@ -3,96 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Credit Card Value Calculator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .question {
-            margin-bottom: 20px;
-        }
-        .hidden {
-            display: none;
-        }
-        #results {
-            background-color: #f0f0f0;
-            padding: 20px;
-            border-radius: 5px;
-        }
-    </style>
+    <title>Credit Card Value Calculator | UpgradedPoints.com</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Credit Card Value Calculator</h1>
-    <p>This tool provides a rough estimate of a credit card's value based on your personal usage and preferences.</p>
+    <p>Discover the true value of your credit card based on your personal usage and preferences.</p>
     
+    <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+    </div>
+
     <div id="calculator">
-        <!-- Travel Profile Questions -->
-        <div class="question">
-            <label for="travelFrequency">How many times do you travel per year?</label>
-            <select id="travelFrequency">
-                <option value="0">0-1</option>
-                <option value="2">2-3</option>
-                <option value="4">4-6</option>
-                <option value="7">7+</option>
-            </select>
+        <div class="section" id="section1">
+            <h2>Travel Profile</h2>
+            <div class="question">
+                <label for="travelFrequency">How many times do you travel per year?</label>
+                <select id="travelFrequency">
+                    <option value="0">0-1</option>
+                    <option value="2">2-3</option>
+                    <option value="4">4-6</option>
+                    <option value="7">7+</option>
+                    <option value="custom">Other (specify)</option>
+                </select>
+                <input type="number" id="customTravelFrequency" class="hidden" placeholder="Enter custom value">
+            </div>
+
+            <div class="question">
+                <label for="homeAirport">What is your home airport?</label>
+                <select id="homeAirport">
+                    <option value="JFK">New York (JFK)</option>
+                    <option value="LAX">Los Angeles (LAX)</option>
+                    <option value="ORD">Chicago (ORD)</option>
+                    <option value="ATL">Atlanta (ATL)</option>
+                    <option value="custom">Other (specify)</option>
+                </select>
+                <input type="text" id="customHomeAirport" class="hidden" placeholder="Enter custom airport">
+            </div>
+
+            <div class="question">
+                <label for="bonusSpend1">How much will you spend on flights booked directly with airlines or via Amex Travel per year?</label>
+                <input type="number" id="bonusSpend1" min="0" step="100" value="0">
+            </div>
+
+            <div class="question">
+                <label for="bonusSpend2">How much will you spend on prepaid hotels booked through Amex Travel per year?</label>
+                <input type="number" id="bonusSpend2" min="0" step="100" value="0">
+            </div>
+
+            <div class="question">
+                <label for="otherSpend">How much will you spend on all other purchases in a year? (1X)</label>
+                <input type="number" id="otherSpend" min="0" step="100" value="0">
+            </div>
+
+            <button onclick="nextSection()">Continue</button>
         </div>
 
-        <div class="question">
-            <label for="annualSpend">Estimated annual spend on travel and dining:</label>
-            <input type="number" id="annualSpend" min="0" step="1000" value="5000">
-        </div>
+        <!-- Add more sections here for additional questions -->
 
-        <!-- Card Benefits Valuation -->
-        <div class="question">
-            <label for="airlineCredit">How much do you value the $200 airline incidental credit?</label>
-            <input type="number" id="airlineCredit" min="0" max="200" value="140">
-            <span class="tooltip">?</span>
-        </div>
-
-        <div class="question">
-            <label for="loungeAccess">How much do you value airport lounge access?</label>
-            <input type="number" id="loungeAccess" min="0" value="0">
-            <span class="tooltip">?</span>
-        </div>
-
-        <!-- Add more benefit questions here -->
-
-        <button onclick="calculateValue()">Calculate Value</button>
     </div>
 
-    <div id="results" class="hidden">
-        <h2>Your Personalized Card Value</h2>
-        <p>Total Value: $<span id="totalValue"></span></p>
-        <p>Annual Fee: $<span id="annualFee">695</span></p>
-        <p>Net Value: $<span id="netValue"></span></p>
-    </div>
-
-    <script>
-        function calculateValue() {
-            const travelFrequency = parseInt(document.getElementById('travelFrequency').value);
-            const annualSpend = parseInt(document.getElementById('annualSpend').value);
-            const airlineCredit = parseInt(document.getElementById('airlineCredit').value);
-            const loungeAccess = parseInt(document.getElementById('loungeAccess').value);
-
-            // Calculate lounge value based on travel frequency
-            const loungeValue = travelFrequency * 50;
-            document.getElementById('loungeAccess').value = loungeValue;
-
-            // Calculate points earned (assuming 5x on travel and dining)
-            const pointsEarned = annualSpend * 5;
-            const pointsValue = pointsEarned * 0.02; // Assuming 2 cents per point value
-
-            const totalValue = airlineCredit + loungeValue + pointsValue;
-            const annualFee = 695;
-            const netValue = totalValue - annualFee;
-
-            document.getElementById('totalValue').textContent = totalValue.toFixed(2);
-            document.getElementById('netValue').textContent = netValue.toFixed(2);
-            document.getElementById('results').classList.remove('hidden');
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
