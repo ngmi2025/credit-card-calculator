@@ -91,6 +91,33 @@
                 </div>
 
                 <div class="button-container">
+                    <button onclick="calculatePoints()" class="cta-button">Calculate Points</button>
+                </div>
+            </div>
+
+            <div class="section results hidden" id="results">
+                <div class="question split">
+                    <label>Current Welcome Bonus offer</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="welcomeBonus" value="80,000 points" readonly>
+                    </div>
+                </div>
+
+                <div class="question split">
+                    <label>Total points earned per year</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="totalPoints" readonly>
+                    </div>
+                </div>
+
+                <div class="question split">
+                    <label>Valuation of Amex Points</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="amexValuation" readonly>
+                    </div>
+                </div>
+
+                <div class="button-container">
                     <button onclick="nextSection()" class="cta-button">Continue</button>
                 </div>
             </div>
