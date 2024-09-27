@@ -201,6 +201,14 @@ input[type="text"]::placeholder {
     cursor: default;
 }
 
+#section2 .question.split {
+    margin-bottom: 15px;
+}
+
+#section2 select {
+    flex: 0 0 40%;
+}
+
 @media (max-width: 600px) {
     .container {
         padding: 10px;
