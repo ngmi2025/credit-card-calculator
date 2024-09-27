@@ -37,22 +37,6 @@ function nextSection() {
     }
 }
 
-function setupSliders() {
-    const sliders = document.querySelectorAll('input[type="range"]');
-    const valueLabels = ['No value', 'Minimal value', 'Some value', 'Majority value', 'Full value'];
-
-    sliders.forEach(slider => {
-        const valueDisplay = slider.nextElementSibling;
-        
-        slider.addEventListener('input', function() {
-            valueDisplay.textContent = valueLabels[this.value];
-        });
-
-        // Set initial value
-        valueDisplay.textContent = valueLabels[slider.value];
-    });
-}
-
 // Show/hide custom input fields based on dropdown selection
 document.getElementById('homeAirport').addEventListener('change', function() {
     document.getElementById('customHomeAirport').classList.toggle('hidden', this.value !== 'custom');
@@ -82,6 +66,3 @@ document.querySelectorAll('input[type="text"]').forEach(input => {
         }
     });
 });
-
-// Call setupSliders when the page loads
-document.addEventListener('DOMContentLoaded', setupSliders);
