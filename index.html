@@ -25,27 +25,33 @@
                 <h2>Travel Profile</h2>
                 <div class="question split">
                     <label for="travelFrequency">How many times do you travel per year?</label>
-                    <select id="travelFrequency" required>
-                        <option value="">Select an option</option>
-                        <option value="0">0-1</option>
-                        <option value="2">2-3</option>
-                        <option value="4">4-6</option>
-                        <option value="7">7+</option>
-                    </select>
+                    <div class="input-group">
+                        <select id="travelFrequency" required>
+                            <option value="">Select an option</option>
+                            <option value="0">0-1</option>
+                            <option value="2">2-3</option>
+                            <option value="4">4-6</option>
+                            <option value="7">7+</option>
+                            <option value="custom">Other (specify)</option>
+                        </select>
+                        <input type="text" id="customTravelFrequency" class="hidden custom-input" placeholder="Enter value">
+                    </div>
                 </div>
 
                 <div class="question split">
                     <label for="homeAirport">What is your home airport?</label>
-                    <select id="homeAirport" required>
-                        <option value="">Select an option</option>
-                        <option value="JFK">New York (JFK)</option>
-                        <option value="LAX">Los Angeles (LAX)</option>
-                        <option value="ORD">Chicago (ORD)</option>
-                        <option value="ATL">Atlanta (ATL)</option>
-                        <option value="custom">Other (specify)</option>
-                    </select>
+                    <div class="input-group">
+                        <select id="homeAirport" required>
+                            <option value="">Select an option</option>
+                            <option value="JFK">New York (JFK)</option>
+                            <option value="LAX">Los Angeles (LAX)</option>
+                            <option value="ORD">Chicago (ORD)</option>
+                            <option value="ATL">Atlanta (ATL)</option>
+                            <option value="custom">Other (specify)</option>
+                        </select>
+                        <input type="text" id="customHomeAirport" class="hidden custom-input" placeholder="Enter airport">
+                    </div>
                 </div>
-                <input type="text" id="customHomeAirport" class="hidden" placeholder="Enter custom airport">
 
                 <div class="question split">
                     <label for="flightSpend">Spending on flights with airlines or Amex Travel / year</label>
@@ -68,9 +74,10 @@
                     </div>
                 </div>
 
-<div class="button-container">
-    <button onclick="nextSection()" class="cta-button">Continue</button>
-</div>            </div>
+                <div class="button-container">
+                    <button onclick="nextSection()" class="cta-button">Continue</button>
+                </div>
+            </div>
         </div>
     </div>
 
