@@ -24,11 +24,11 @@ function nextSection() {
     const progress = document.getElementById('progress');
 
     if (!section1.classList.contains('hidden')) {
-        // We're on the first section, move to results
-        section1.classList.add('hidden');
-        results.classList.remove('hidden');
+        // We're on the first section, calculate points and show results
+        calculatePoints();
     } else if (!results.classList.contains('hidden')) {
         // We're on the results section, move to section 2
+        section1.classList.add('hidden');
         results.classList.add('hidden');
         section2.classList.remove('hidden');
         progress.style.width = '66.66%';
