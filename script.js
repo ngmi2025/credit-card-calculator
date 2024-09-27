@@ -28,6 +28,10 @@ document.getElementById('homeAirport').addEventListener('change', function() {
     document.getElementById('customHomeAirport').classList.toggle('hidden', this.value !== 'custom');
 });
 
+document.getElementById('travelFrequency').addEventListener('change', function() {
+    document.getElementById('customTravelFrequency').classList.toggle('hidden', this.value !== 'custom');
+});
+
 // Add error class on invalid input and handle currency formatting
 document.querySelectorAll('input[required], select[required]').forEach(input => {
     input.addEventListener('blur', function() {
