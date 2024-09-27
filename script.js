@@ -1,14 +1,36 @@
 function nextSection() {
+    // Validate inputs
+    const inputs = document.querySelectorAll('input[required], select[required]');
+    let isValid = true;
+
+    inputs.forEach(input => {
+        if (!input.value) {
+            isValid = false;
+            input.classList.add('error');
+        } else {
+            input.classList.remove('error');
+        }
+    });
+
+    if (!isValid) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+
     // Here you would implement the logic to move to the next section
     // For now, we'll just update the progress bar
-    document.getElementById('progress').style.width = '50%';
+    document.getElementById('progress').style.width = '66.66%';
+    document.querySelectorAll('.step')[1].classList.add('active');
 }
 
 // Show/hide custom input fields based on dropdown selection
-document.getElementById('travelFrequency').addEventListener('change', function() {
-    document.getElementById('customTravelFrequency').classList.toggle('hidden', this.value !== 'custom');
-});
-
 document.getElementById('homeAirport').addEventListener('change', function() {
     document.getElementById('customHomeAirport').classList.toggle('hidden', this.value !== 'custom');
+});
+
+// Add error class on invalid input
+document.querySelectorAll('input[required], select[required]').forEach(input => {
+    input.addEventListener('blur', function() {
+        this.classList.toggle('error', !this.value);
+    });
 });
