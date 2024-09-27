@@ -50,7 +50,7 @@ h1 {
     height: 20px;
     background-color: var(--primary-color);
     border-radius: 5px;
-    transition: width 0.5s ease-in-out;
+    transition: width 0.3s ease;
 }
 
 .step-labels {
@@ -60,7 +60,7 @@ h1 {
 }
 
 .step {
-    font-size: 14px;
+    font-size: 0.9em;
     color: var(--secondary-text-color);
 }
 
@@ -70,48 +70,29 @@ h1 {
 }
 
 .section {
-    background-color: #f9f9f9;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
+    background-color: var(--background-color);
     padding: 20px;
+    border-radius: 5px;
     margin-bottom: 20px;
 }
 
 .question {
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.question:last-child {
-    border-bottom: none;
+    margin-bottom: 20px;
 }
 
 .question.split {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .question.split label {
-    flex: 1;
-    margin-right: 20px;
-}
-
-.question.split .input-group,
-.question.split .input-wrapper {
-    flex: 0 0 40%;
+    flex: 0 0 60%;
 }
 
 .input-group {
     display: flex;
-    flex-direction: column;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    align-items: center;
 }
 
 select, input[type="text"] {
@@ -119,54 +100,41 @@ select, input[type="text"] {
     padding: 10px;
     border: 1px solid var(--border-color);
     border-radius: 5px;
-    font-size: 16px;
-    background-color: #fff;
-    height: 44px;
-    box-sizing: border-box;
+    font-size: 1em;
 }
 
 select {
-    line-height: 24px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
     background-repeat: no-repeat;
-    background-position: right 10px center;
-    padding-right: 30px;
+    background-position: right 10px top 50%;
+    background-size: 20px auto;
 }
 
-select::-ms-expand {
-    display: none;
-}
-
-select:focus, input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(0,119,190,0.2);
+.custom-input {
+    margin-left: 10px;
 }
 
 .input-wrapper {
     position: relative;
-    width: 100%;
+    flex: 0 0 40%;
 }
 
-input[type="text"] {
-    padding-left: 20px;
-    width: 100%;
-}
-
-input[type="text"]::placeholder {
+.input-wrapper::before {
+    content: '$';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--secondary-text-color);
 }
 
-.custom-input {
-    margin-top: 10px;
+.input-wrapper input[type="text"] {
+    padding-left: 25px;
 }
 
 .button-container {
-    display: flex;
-    justify-content: flex-end;
+    text-align: right;
     margin-top: 20px;
 }
 
@@ -174,15 +142,19 @@ input[type="text"]::placeholder {
     background-color: var(--primary-color);
     color: white;
     border: none;
-    padding: 12px 20px;
+    padding: 10px 20px;
+    font-size: 1em;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
     transition: background-color 0.3s ease;
 }
 
 .cta-button:hover {
     background-color: #005fa3;
+}
+
+.error {
+    border-color: var(--error-color) !important;
 }
 
 .hidden {
@@ -201,12 +173,21 @@ input[type="text"]::placeholder {
     cursor: default;
 }
 
-#section2 .question.split {
-    margin-bottom: 15px;
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
 }
 
-#section2 select {
-    flex: 0 0 40%;
+input[type="range"] {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.slider-value {
+    font-size: 0.9em;
+    color: var(--secondary-text-color);
 }
 
 @media (max-width: 600px) {
