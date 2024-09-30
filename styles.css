@@ -27,7 +27,7 @@ body {
     border-radius: 5px;
 }
 
-h1 {
+h1, h2 {
     color: var(--primary-color);
     text-align: center;
 }
@@ -78,15 +78,17 @@ h1 {
 
 .question {
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
 }
 
 .question label {
-    display: block;
-    margin-bottom: 5px;
+    flex: 0 0 60%;
+    margin-right: 20px;
 }
 
-.input-group {
-    width: 100%;
+.input-group, .input-wrapper {
+    flex: 0 0 35%;
 }
 
 select, input[type="text"] {
@@ -110,11 +112,6 @@ select {
 
 .custom-input {
     margin-top: 10px;
-}
-
-.input-wrapper {
-    position: relative;
-    width: 100%;
 }
 
 .input-wrapper::before {
@@ -176,29 +173,6 @@ hr {
     margin: 20px 0;
 }
 
-@media (min-width: 768px) {
-    .question {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-    }
-
-    .question label {
-        flex: 0 0 60%;
-        margin-right: 20px;
-        margin-bottom: 0;
-    }
-
-    .input-group, .input-wrapper, select {
-        flex: 0 0 35%;
-    }
-
-    .custom-input {
-        margin-left: calc(65% + 20px);
-        width: 35%;
-    }
-}
-
 @media (max-width: 767px) {
     .container {
         padding: 10px;
@@ -215,15 +189,13 @@ hr {
 
     .question label,
     .input-group,
-    .input-wrapper,
-    select {
+    .input-wrapper {
         width: 100%;
         margin-right: 0;
     }
 
     .input-group,
-    .input-wrapper,
-    select {
+    .input-wrapper {
         margin-top: 10px;
     }
 }
