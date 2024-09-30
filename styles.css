@@ -138,6 +138,10 @@ select {
     padding-left: 25px;
 }
 
+.no-currency::before {
+    content: none;
+}
+
 .button-container {
     text-align: right;
     margin-top: 20px;
