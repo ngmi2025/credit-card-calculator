@@ -23,31 +23,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function nextSection() {
         const section1 = document.getElementById('section1');
-        const results = document.getElementById('results');
         const section2 = document.getElementById('section2');
+        const results = document.getElementById('results');
         const progress = document.getElementById('progress');
 
-        if (!section2.classList.contains('hidden')) {
+        if (section1.classList.contains('hidden')) {
             // We're on section 2, move to final results (not implemented yet)
+            section2.classList.add('hidden');
+            results.classList.remove('hidden');
             progress.style.width = '100%';
             document.querySelectorAll('.step')[2].classList.add('active');
         } else {
-            // We're on the first section or results, move to section 2
+            // We're on the first section, move to section 2
             section1.classList.add('hidden');
             results.classList.add('hidden');
             section2.classList.remove('hidden');
             progress.style.width = '66.66%';
             document.querySelectorAll('.step')[1].classList.add('active');
         }
+        document.getElementById('continueBtn').classList.add('hidden');
     }
 
     // Show/hide custom input fields based on dropdown selection
-    document.getElementById('homeAirport').addEventListener('change', function() {
-        document.getElementById('customHomeAirport').classList.toggle('hidden', this.value !== 'custom');
-    });
-
-    document.getElementById('travelFrequency').addEventListener('change', function() {
-        document.getElementById('customTravelFrequency').classList.toggle('hidden', this.value !== 'custom');
+    document.querySelectorAll('select').forEach(select => {
+        select.addEventListener('change', function() {
+            const customInput = this.nextElementSibling;
+            if (customInput && customInput.classList.contains('custom-input')) {
+                customInput.classList.toggle('hidden', this.value !== 'custom');
+            }
+        });
     });
 
     // Format currency inputs
@@ -86,4 +90,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add event listener for the Continue button
     document.getElementById('continueBtn').addEventListener('click', nextSection);
+
+    // Add event listener for the back link
+    document.getElementById('backToSection1').addEventListener('click', function(e) {
+        e.preventDefault();
+        const section1 = document.getElementById('section1');
+        const section2 = document.getElementById('section2');
+        const progress = document.getElementById('progress');
+
+        section2.classList.add('hidden');
+        section1.classList.remove('hidden');
+        progress.style.width = '33.33%';
+        document.querySelectorAll('.step')[1].classList.remove('active');
+    });
 });
