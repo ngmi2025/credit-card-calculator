@@ -94,11 +94,10 @@
                 <a href="#" id="backToSection1" class="back-link">← Back to previous section</a>
                 <h2>Card Benefits</h2>
                 <p class="subheading">How likely are you to use the following credit card benefits:</p>
-                
                 <div class="question-group">
-                    <label for="airlineCredit">$200 airline incidental credit?</label>
+                    <label for="airportLoungeAccess">Airport lounge access?</label>
                     <div class="input-group">
-                        <select id="airlineCredit" required>
+                        <select id="airportLoungeAccess" required>
                             <option value="">Select an option</option>
                             <option value="0">I won't use it</option>
                             <option value="0.5">I'll use some of it</option>
@@ -107,7 +106,7 @@
                     </div>
                 </div>
                 <div class="question-group">
-                    <label for="uberCredit">$200 annual Uber Cash credit?</label>
+                    <label for="uberCredit">$200 annual Uber credit?</label>
                     <div class="input-group">
                         <select id="uberCredit" required>
                             <option value="">Select an option</option>
@@ -118,9 +117,9 @@
                     </div>
                 </div>
                 <div class="question-group">
-                    <label for="entertainmentCredit">$240 annual Digital Entertainment Credit?</label>
+                    <label for="airlineCredit">$200 annual airline fee credit?</label>
                     <div class="input-group">
-                        <select id="entertainmentCredit" required>
+                        <select id="airlineCredit" required>
                             <option value="">Select an option</option>
                             <option value="0">I won't use it</option>
                             <option value="0.5">I'll use some of it</option>
@@ -205,6 +204,9 @@
                         </select>
                     </div>
                 </div>
+                <div class="button-container">
+                    <button id="continueToSection3" class="cta-button">Continue</button>
+                </div>
             </div>
 
             <div id="results" class="hidden">
@@ -221,10 +223,6 @@
                     <label for="amexValuation">Amex Platinum Card Valuation:</label>
                     <input type="text" id="amexValuation" readonly>
                 </div>
-            </div>
-
-            <div class="button-container">
-                <button id="continueBtn" class="cta-button hidden">Continue</button>
             </div>
         </div>
     </div>
