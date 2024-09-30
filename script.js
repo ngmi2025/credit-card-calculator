@@ -1,106 +1,85 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const WELCOME_BONUS = 80000;
-    const POINT_VALUE = 0.022;
+    const calculator = document.getElementById('calculator');
+    const section1 = document.getElementById('section1');
+    const section2 = document.getElementById('section2');
+    const results = document.getElementById('results');
+    const progress = document.getElementById('progress');
+    const calculatePointsBtn = document.getElementById('calculatePointsBtn');
+    const continueToSection2Btn = document.getElementById('continueToSection2');
+    const backToSection1 = document.getElementById('backToSection1');
+    const continueToSection3Btn = document.getElementById('continueToSection3');
 
-    function calculatePoints() {
-        const flightSpend = parseFloat(document.getElementById('flightSpend').value.replace(/[^\d.-]/g, '')) || 0;
-        const hotelSpend = parseFloat(document.getElementById('hotelSpend').value.replace(/[^\d.-]/g, '')) || 0;
-        const otherSpend = parseFloat(document.getElementById('otherSpend').value.replace(/[^\d.-]/g, '')) || 0;
+    const travelFrequency = document.getElementById('travelFrequency');
+    const customTravelFrequency = document.getElementById('customTravelFrequency');
+    const homeAirport = document.getElementById('homeAirport');
+    const customHomeAirport = document.getElementById('customHomeAirport');
 
-        const travelPoints = (flightSpend + hotelSpend) * 5;
-        const otherPoints = otherSpend;
-        const totalPoints = travelPoints + otherPoints;
+    const flightSpend = document.getElementById('flightSpend');
+    const hotelSpend = document.getElementById('hotelSpend');
+    const otherSpend = document.getElementById('otherSpend');
 
-        const totalValuation = (WELCOME_BONUS + totalPoints) * POINT_VALUE;
+    const totalPoints = document.getElementById('totalPoints');
+    const welcomeBonus = document.getElementById('welcomeBonus');
+    const amexValuation = document.getElementById('amexValuation');
 
-        document.getElementById('totalPoints').value = Math.round(totalPoints).toLocaleString() + ' points';
-        document.getElementById('welcomeBonus').value = WELCOME_BONUS.toLocaleString() + ' points';
-        document.getElementById('amexValuation').value = '$' + totalValuation.toFixed(2);
-
-        document.getElementById('results').classList.remove('hidden');
-        document.getElementById('continueBtn').classList.remove('hidden');
-    }
-
-    function nextSection() {
-        const section1 = document.getElementById('section1');
-        const section2 = document.getElementById('section2');
-        const results = document.getElementById('results');
-        const progress = document.getElementById('progress');
-
-        if (section1.classList.contains('hidden')) {
-            // We're on section 2, move to final results (not implemented yet)
-            section2.classList.add('hidden');
-            results.classList.remove('hidden');
-            progress.style.width = '100%';
-            document.querySelectorAll('.step')[2].classList.add('active');
-        } else {
-            // We're on the first section, move to section 2
-            section1.classList.add('hidden');
-            results.classList.add('hidden');
-            section2.classList.remove('hidden');
-            progress.style.width = '66.66%';
-            document.querySelectorAll('.step')[1].classList.add('active');
-        }
-        document.getElementById('continueBtn').classList.add('hidden');
-    }
-
-    // Show/hide custom input fields based on dropdown selection
-    document.querySelectorAll('select').forEach(select => {
-        select.addEventListener('change', function() {
-            const customInput = this.nextElementSibling;
-            if (customInput && customInput.classList.contains('custom-input')) {
-                customInput.classList.toggle('hidden', this.value !== 'custom');
-            }
-        });
-    });
-
-    // Format currency inputs
-    function formatCurrency(input) {
-        let value = input.value.replace(/[^\d]/g, '');
-        if (value) {
-            value = parseInt(value).toLocaleString();
-            input.value = value;
-        } else {
-            input.value = '';
-        }
-    }
-
-    // Add event listeners for currency formatting
-    document.querySelectorAll('.input-wrapper input[type="text"]').forEach(input => {
-        input.addEventListener('input', function() {
-            formatCurrency(this);
-        });
-
-        input.addEventListener('blur', function() {
-            if (this.value) {
-                this.value = parseInt(this.value.replace(/[^\d]/g, '')).toLocaleString();
+    function showCustomInput(selectElement, customInput) {
+        selectElement.addEventListener('change', function() {
+            if (this.value === 'custom') {
+                customInput.classList.remove('hidden');
             } else {
-                this.value = '0';
+                customInput.classList.add('hidden');
             }
         });
+    }
+
+    showCustomInput(travelFrequency, customTravelFrequency);
+    showCustomInput(homeAirport, customHomeAirport);
+
+    function formatCurrency(input) {
+        input.addEventListener('input', function(e) {
+            let value = this.value.replace(/[^\d]/g, '');
+            if (value.length > 2) {
+                value = value.slice(0, -2) + '.' + value.slice(-2);
+            } else if (value.length === 2) {
+                value = '0.' + value;
+            } else if (value.length === 1) {
+                value = '0.0' + value;
+            }
+            this.value = value ? '$ ' + parseFloat(value).toFixed(2) : '';
+        });
+    }
+
+    formatCurrency(flightSpend);
+    formatCurrency(hotelSpend);
+    formatCurrency(otherSpend);
+
+    calculatePointsBtn.addEventListener('click', function() {
+        // Placeholder calculation logic
+        let points = 10000 + Math.floor(Math.random() * 5000);
+        totalPoints.value = points.toLocaleString() + ' points';
+        welcomeBonus.value = '80,000 points';
+        amexValuation.value = '$ ' + (2000 + Math.floor(Math.random() * 500)).toFixed(2);
+
+        section1.classList.add('hidden');
+        results.classList.remove('hidden');
+        progress.style.width = '33%';
     });
 
-    // Initialize currency inputs
-    document.querySelectorAll('.input-wrapper input[type="text"]').forEach(input => {
-        input.value = '0';
+    continueToSection2Btn.addEventListener('click', function() {
+        results.classList.add('hidden');
+        section2.classList.remove('hidden');
+        progress.style.width = '66%';
     });
 
-    // Add event listener for the Calculate Points button
-    document.getElementById('calculatePointsBtn').addEventListener('click', calculatePoints);
-
-    // Add event listener for the Continue button
-    document.getElementById('continueBtn').addEventListener('click', nextSection);
-
-    // Add event listener for the back link
-    document.getElementById('backToSection1').addEventListener('click', function(e) {
+    backToSection1.addEventListener('click', function(e) {
         e.preventDefault();
-        const section1 = document.getElementById('section1');
-        const section2 = document.getElementById('section2');
-        const progress = document.getElementById('progress');
-
         section2.classList.add('hidden');
         section1.classList.remove('hidden');
-        progress.style.width = '33.33%';
-        document.querySelectorAll('.step')[1].classList.remove('active');
+        progress.style.width = '33%';
+    });
+
+    continueToSection3Btn.addEventListener('click', function() {
+        // Placeholder for section 3 logic
+        alert('Moving to section 3 (not implemented yet)');
     });
 });
