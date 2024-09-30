@@ -125,6 +125,10 @@ select {
     position: relative;
 }
 
+.input-wrapper input[type="text"] {
+    padding-left: 25px;
+}
+
 .input-wrapper::before {
     content: '$';
     position: absolute;
@@ -132,10 +136,7 @@ select {
     top: 50%;
     transform: translateY(-50%);
     color: var(--secondary-text-color);
-}
-
-.input-wrapper input[type="text"] {
-    padding-left: 25px;
+    z-index: 1;
 }
 
 .no-currency::before {
