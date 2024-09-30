@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const WELCOME_BONUS = 80000;
+    const POINT_VALUE = 0.022;
+
     function calculatePoints() {
         const flightSpend = parseFloat(document.getElementById('flightSpend').value.replace(/[^\d.-]/g, '')) || 0;
         const hotelSpend = parseFloat(document.getElementById('hotelSpend').value.replace(/[^\d.-]/g, '')) || 0;
@@ -8,11 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const otherPoints = otherSpend;
         const totalPoints = travelPoints + otherPoints;
 
-        const welcomeBonus = 80000;
-        const pointValue = 0.022;
-        const totalValuation = (welcomeBonus + totalPoints) * pointValue;
+        const totalValuation = (WELCOME_BONUS + totalPoints) * POINT_VALUE;
 
         document.getElementById('totalPoints').value = Math.round(totalPoints).toLocaleString() + ' points';
+        document.getElementById('welcomeBonus').value = WELCOME_BONUS.toLocaleString() + ' points';
         document.getElementById('amexValuation').value = '$' + totalValuation.toFixed(2);
 
         document.getElementById('results').classList.remove('hidden');
