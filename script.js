@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('amexValuation').value = '$' + totalValuation.toFixed(2);
 
         document.getElementById('results').classList.remove('hidden');
+        document.getElementById('continueBtn').classList.remove('hidden');
     }
 
     function nextSection() {
@@ -82,4 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add event listener for the Calculate Points button
     document.getElementById('calculatePointsBtn').addEventListener('click', calculatePoints);
+
+    // Add event listener for the Continue button
+    document.getElementById('continueBtn').addEventListener('click', nextSection);
 });
