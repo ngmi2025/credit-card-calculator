@@ -72,31 +72,40 @@
                 <div class="question">
                     <label for="flightSpend">Spending on flights with airlines or Amex Travel / year</label>
                     <div class="input-wrapper">
-                        <input type="text" id="flightSpend" placeholder="$0" required>
+                        <input type="text" id="flightSpend" placeholder="0" required>
                     </div>
                 </div>
                 <hr>
                 <div class="question">
                     <label for="hotelSpend">Spending on prepaid hotels through Amex Travel / year</label>
                     <div class="input-wrapper">
-                        <input type="text" id="hotelSpend" placeholder="$0" required>
+                        <input type="text" id="hotelSpend" placeholder="0" required>
                     </div>
                 </div>
                 <hr>
                 <div class="question">
                     <label for="otherSpend">Spending on all other purchases / year</label>
                     <div class="input-wrapper">
-                        <input type="text" id="otherSpend" placeholder="$0" required>
+                        <input type="text" id="otherSpend" placeholder="0" required>
                     </div>
                 </div>
 
                 <div class="button-container">
-                    <button onclick="calculatePoints()" class="cta-button">Calculate Points</button>
+                    <button id="calculatePointsBtn" class="cta-button">Calculate Points</button>
                 </div>
             </div>
 
-            <!-- Rest of the HTML remains unchanged -->
-
+            <div id="results" class="hidden">
+                <h2>Results</h2>
+                <div class="question">
+                    <label for="totalPoints">Total Points Earned:</label>
+                    <input type="text" id="totalPoints" readonly>
+                </div>
+                <div class="question">
+                    <label for="amexValuation">Amex Platinum Card Valuation:</label>
+                    <input type="text" id="amexValuation" readonly>
+                </div>
+            </div>
         </div>
     </div>
 
