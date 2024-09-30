@@ -170,6 +170,12 @@ select {
     cursor: default;
 }
 
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 20px 0;
+}
+
 @media (min-width: 768px) {
     .question {
         display: flex;
@@ -183,7 +189,7 @@ select {
         margin-bottom: 0;
     }
 
-    .input-group, .input-wrapper {
+    .input-group, .input-wrapper, select {
         flex: 0 0 35%;
     }
 
@@ -209,13 +215,15 @@ select {
 
     .question label,
     .input-group,
-    .input-wrapper {
+    .input-wrapper,
+    select {
         width: 100%;
         margin-right: 0;
     }
 
     .input-group,
-    .input-wrapper {
+    .input-wrapper,
+    select {
         margin-top: 10px;
     }
 }
