@@ -40,6 +40,13 @@ document.addEventListener('DOMContentLoaded', function() {
             let value = this.value.replace(/[^\d]/g, '');
             this.value = value ? '$ ' + parseInt(value).toLocaleString() : '';
         });
+
+        // Add this to remove the extra $ when the input loses focus
+        input.addEventListener('blur', function(e) {
+            if (this.value.startsWith('$ $')) {
+                this.value = this.value.replace('$ $', '$ ');
+            }
+        });
     }
 
     formatCurrency(flightSpend);
