@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // On blur, ensure that no double dollar signs are present
         input.addEventListener('blur', function(e) {
-            // Remove extra dollar signs and any trailing spaces
+            // Ensure only one dollar sign
             this.value = this.value.trim().replace(/^\$?\s?\$/, '$').trim();
         });
     }
