@@ -107,11 +107,6 @@ input[type="text"] {
     color: var(--secondary-text-color);
 }
 
-/* Only show the dollar sign when the input field is empty */
-.input-wrapper input:not(:placeholder-shown)::before {
-    content: '';
-}
-
 .input-wrapper input {
     padding-left: 25px;
 }
