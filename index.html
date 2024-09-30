@@ -22,8 +22,8 @@
 
         <div id="calculator">
             <div class="section" id="section1">
-                <h2 class="align-left">Travel Profile</h2>
-                <div class="question">
+                <h2>Travel Profile</h2>
+                <div class="question-group">
                     <label for="travelFrequency">How many times do you travel per year?</label>
                     <div class="input-group">
                         <select id="travelFrequency" required>
@@ -37,7 +37,7 @@
                         <input type="text" id="customTravelFrequency" class="hidden custom-input no-currency" placeholder="Enter value">
                     </div>
                 </div>
-                <div class="question">
+                <div class="question-group">
                     <label for="homeAirport">What is your home airport?</label>
                     <div class="input-group">
                         <select id="homeAirport" required>
@@ -67,19 +67,19 @@
                         <input type="text" id="customHomeAirport" class="hidden custom-input no-currency" placeholder="Enter airport">
                     </div>
                 </div>
-                <div class="question">
+                <div class="question-group">
                     <label for="flightSpend">Spending on flights with airlines or Amex Travel / year</label>
                     <div class="input-wrapper">
                         <input type="text" id="flightSpend" placeholder="0" required>
                     </div>
                 </div>
-                <div class="question">
+                <div class="question-group">
                     <label for="hotelSpend">Spending on prepaid hotels through Amex Travel / year</label>
                     <div class="input-wrapper">
                         <input type="text" id="hotelSpend" placeholder="0" required>
                     </div>
                 </div>
-                <div class="question">
+                <div class="question-group">
                     <label for="otherSpend">Spending on all other purchases / year</label>
                     <div class="input-wrapper">
                         <input type="text" id="otherSpend" placeholder="0" required>
@@ -92,10 +92,10 @@
 
             <div class="section hidden" id="section2">
                 <a href="#" id="backToSection1" class="back-link">← Back to previous section</a>
-                <h2 class="align-left">Card Benefits</h2>
+                <h2>Card Benefits</h2>
                 <p class="subheading">How likely are you to use the following credit card benefits:</p>
                 
-                <div class="question">
+                <div class="question-group">
                     <label for="airlineCredit">$200 airline incidental credit?</label>
                     <div class="input-group">
                         <select id="airlineCredit" required>
@@ -106,7 +106,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="question">
+                <div class="question-group">
                     <label for="uberCredit">$200 annual Uber Cash credit?</label>
                     <div class="input-group">
                         <select id="uberCredit" required>
@@ -117,7 +117,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="question">
+                <div class="question-group">
                     <label for="entertainmentCredit">$240 annual Digital Entertainment Credit?</label>
                     <div class="input-group">
                         <select id="entertainmentCredit" required>
@@ -128,7 +128,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="question">
+                <div class="question-group">
                     <label for="hotelCredit">$200 annual Hotel credit?</label>
                     <div class="input-group">
                         <select id="hotelCredit" required>
@@ -139,7 +139,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="question">
+                <div class="question-group">
                     <label for="walmartCredit">$155 Walmart+ credit?</label>
                     <div class="input-group">
                         <select id="walmartCredit" required>
@@ -150,7 +150,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="question">
+                <div class="question-group">
                     <label for="equinoxCredit">$300 annual Equinox credit?</label>
                     <div class="input-group">
                         <select id="equinoxCredit" required>
@@ -161,7 +161,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="question">
+                <div class="question-group">
                     <label for="saksCredit">$100 Saks credit?</label>
                     <div class="input-group">
                         <select id="saksCredit" required>
@@ -172,7 +172,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="question">
+                <div class="question-group">
                     <label for="clearCredit">$189 CLEAR credit?</label>
                     <div class="input-group">
                         <select id="clearCredit" required>
@@ -183,7 +183,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="question">
+                <div class="question-group">
                     <label for="globalEntryCredit">The Global Entry/TSA PreCheck credit?</label>
                     <div class="input-group">
                         <select id="globalEntryCredit" required>
@@ -194,7 +194,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="question">
+                <div class="question-group">
                     <label for="soulCycleCredit">$300 SoulCycle Bike credit?</label>
                     <div class="input-group">
                         <select id="soulCycleCredit" required>
@@ -209,15 +209,15 @@
 
             <div id="results" class="hidden">
                 <h2>Results</h2>
-                <div class="question">
+                <div class="question-group">
                     <label for="totalPoints">Total Points Earned:</label>
                     <input type="text" id="totalPoints" readonly>
                 </div>
-                <div class="question">
+                <div class="question-group">
                     <label for="welcomeBonus">Current Welcome Bonus Offer:</label>
                     <input type="text" id="welcomeBonus" readonly>
                 </div>
-                <div class="question">
+                <div class="question-group">
                     <label for="amexValuation">Amex Platinum Card Valuation:</label>
                     <input type="text" id="amexValuation" readonly>
                 </div>
