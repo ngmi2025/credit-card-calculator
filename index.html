@@ -1,116 +1,246 @@
-<div class="section hidden" id="section2">
-    <h2>How much do you value the available credits on your card?</h2>
-    <div class="question split">
-        <label for="airlineCredit">$200 airline incidental credit?</label>
-        <select id="airlineCredit" required>
-            <option value="">Select an option</option>
-            <option value="no">No value</option>
-            <option value="minimal">Minimal value</option>
-            <option value="some">Some value</option>
-            <option value="majority">Majority value</option>
-            <option value="full">Full value</option>
-        </select>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Value Calculator | UpgradedPoints.com</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Credit Card Value Calculator</h1>
+        <p class="intro">Discover the true value of your credit card based on your personal usage and preferences.</p>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+            <div class="step-labels">
+                <span class="step active">Travel Profile</span>
+                <span class="step">Card Benefits</span>
+                <span class="step">Results</span>
+            </div>
+        </div>
+
+        <div id="calculator">
+            <div class="section" id="section1">
+                <h2>Travel Profile</h2>
+                <div class="question split">
+                    <label for="travelFrequency">How many times do you travel per year?</label>
+                    <div class="input-group">
+                        <select id="travelFrequency" required>
+                            <option value="">Select an option</option>
+                            <option value="0">0-1</option>
+                            <option value="2">2-3</option>
+                            <option value="4">4-6</option>
+                            <option value="7">7+</option>
+                            <option value="custom">Other (specify)</option>
+                        </select>
+                        <input type="text" id="customTravelFrequency" class="hidden custom-input" placeholder="Enter value">
+                    </div>
+                </div>
+
+                <div class="question split">
+                    <label for="homeAirport">What is your home airport?</label>
+                    <div class="input-group">
+                        <select id="homeAirport" required>
+                            <option value="">Select an option</option>
+                            <option value="ATL">Atlanta (ATL)</option>
+                            <option value="BOS">Boston (BOS)</option>
+                            <option value="CLT">Charlotte (CLT)</option>
+                            <option value="ORD">Chicago (ORD)</option>
+                            <option value="DFW">Dallas/Fort Worth (DFW)</option>
+                            <option value="DEN">Denver (DEN)</option>
+                            <option value="DTW">Detroit (DTW)</option>
+                            <option value="FLL">Fort Lauderdale (FLL)</option>
+                            <option value="IAH">Houston (IAH)</option>
+                            <option value="LAS">Las Vegas (LAS)</option>
+                            <option value="LAX">Los Angeles (LAX)</option>
+                            <option value="MIA">Miami (MIA)</option>
+                            <option value="MSP">Minneapolis (MSP)</option>
+                            <option value="EWR">Newark (EWR)</option>
+                            <option value="JFK">New York (JFK)</option>
+                            <option value="MCO">Orlando (MCO)</option>
+                            <option value="PHL">Philadelphia (PHL)</option>
+                            <option value="PHX">Phoenix (PHX)</option>
+                            <option value="SFO">San Francisco (SFO)</option>
+                            <option value="SEA">Seattle (SEA)</option>
+                            <option value="custom">Other (specify)</option>
+                        </select>
+                        <input type="text" id="customHomeAirport" class="hidden custom-input" placeholder="Enter airport">
+                    </div>
+                </div>
+
+                <div class="question split">
+                    <label for="flightSpend">Spending on flights with airlines or Amex Travel / year</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="flightSpend" placeholder="$0" required>
+                    </div>
+                </div>
+
+                <div class="question split">
+                    <label for="hotelSpend">Spending on prepaid hotels through Amex Travel / year</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="hotelSpend" placeholder="$0" required>
+                    </div>
+                </div>
+
+                <div class="question split">
+                    <label for="otherSpend">Spending on all other purchases / year</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="otherSpend" placeholder="$0" required>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <button onclick="calculatePoints()" class="cta-button">Calculate Points</button>
+                </div>
+            </div>
+
+            <div class="section results hidden" id="results">
+                <div class="question split">
+                    <label>Current Welcome Bonus offer</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="welcomeBonus" value="80,000 points" readonly>
+                    </div>
+                </div>
+
+                <div class="question split">
+                    <label>Total points earned per year</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="totalPoints" readonly>
+                    </div>
+                </div>
+
+                <div class="question split">
+                    <label>Valuation of Amex Points</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="amexValuation" readonly>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <button onclick="nextSection()" class="cta-button">Continue</button>
+                </div>
+            </div>
+
+            <div class="section hidden" id="section2">
+                <h2>How much do you value the available credits on your card?</h2>
+                <div class="question split">
+                    <label for="airlineCredit">$200 airline incidental credit?</label>
+                    <select id="airlineCredit" required>
+                        <option value="">Select an option</option>
+                        <option value="no">No value</option>
+                        <option value="minimal">Minimal value</option>
+                        <option value="some">Some value</option>
+                        <option value="majority">Majority value</option>
+                        <option value="full">Full value</option>
+                    </select>
+                </div>
+                <div class="question split">
+                    <label for="uberCredit">$200 annual Uber Cash credit?</label>
+                    <select id="uberCredit" required>
+                        <option value="">Select an option</option>
+                        <option value="no">No value</option>
+                        <option value="minimal">Minimal value</option>
+                        <option value="some">Some value</option>
+                        <option value="majority">Majority value</option>
+                        <option value="full">Full value</option>
+                    </select>
+                </div>
+                <div class="question split">
+                    <label for="entertainmentCredit">$240 annual Digital Entertainment Credit?</label>
+                    <select id="entertainmentCredit" required>
+                        <option value="">Select an option</option>
+                        <option value="no">No value</option>
+                        <option value="minimal">Minimal value</option>
+                        <option value="some">Some value</option>
+                        <option value="majority">Majority value</option>
+                        <option value="full">Full value</option>
+                    </select>
+                </div>
+                <div class="question split">
+                    <label for="hotelCredit">$200 annual Hotel credit?</label>
+                    <select id="hotelCredit" required>
+                        <option value="">Select an option</option>
+                        <option value="no">No value</option>
+                        <option value="minimal">Minimal value</option>
+                        <option value="some">Some value</option>
+                        <option value="majority">Majority value</option>
+                        <option value="full">Full value</option>
+                    </select>
+                </div>
+                <div class="question split">
+                    <label for="walmartCredit">$155 Walmart+ credit?</label>
+                    <select id="walmartCredit" required>
+                        <option value="">Select an option</option>
+                        <option value="no">No value</option>
+                        <option value="minimal">Minimal value</option>
+                        <option value="some">Some value</option>
+                        <option value="majority">Majority value</option>
+                        <option value="full">Full value</option>
+                    </select>
+                </div>
+                <div class="question split">
+                    <label for="equinoxCredit">$300 annual Equinox credit?</label>
+                    <select id="equinoxCredit" required>
+                        <option value="">Select an option</option>
+                        <option value="no">No value</option>
+                        <option value="minimal">Minimal value</option>
+                        <option value="some">Some value</option>
+                        <option value="majority">Majority value</option>
+                        <option value="full">Full value</option>
+                    </select>
+                </div>
+                <div class="question split">
+                    <label for="saksCredit">$100 Saks credit?</label>
+                    <select id="saksCredit" required>
+                        <option value="">Select an option</option>
+                        <option value="no">No value</option>
+                        <option value="minimal">Minimal value</option>
+                        <option value="some">Some value</option>
+                        <option value="majority">Majority value</option>
+                        <option value="full">Full value</option>
+                    </select>
+                </div>
+                <div class="question split">
+                    <label for="clearCredit">$189 CLEAR credit?</label>
+                    <select id="clearCredit" required>
+                        <option value="">Select an option</option>
+                        <option value="no">No value</option>
+                        <option value="minimal">Minimal value</option>
+                        <option value="some">Some value</option>
+                        <option value="majority">Majority value</option>
+                        <option value="full">Full value</option>
+                    </select>
+                </div>
+                <div class="question split">
+                    <label for="globalEntryCredit">Global Entry/TSA PreCheck credit?</label>
+                    <select id="globalEntryCredit" required>
+                        <option value="">Select an option</option>
+                        <option value="no">No value</option>
+                        <option value="minimal">Minimal value</option>
+                        <option value="some">Some value</option>
+                        <option value="majority">Majority value</option>
+                        <option value="full">Full value</option>
+                    </select>
+                </div>
+                <div class="question split">
+                    <label for="soulCycleCredit">$300 SoulCycle Bike credit?</label>
+                    <select id="soulCycleCredit" required>
+                        <option value="">Select an option</option>
+                        <option value="no">No value</option>
+                        <option value="minimal">Minimal value</option>
+                        <option value="some">Some value</option>
+                        <option value="majority">Majority value</option>
+                        <option value="full">Full value</option>
+                    </select>
+                </div>
+                <div class="button-container">
+                    <button onclick="nextSection()" class="cta-button">Continue</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="question split">
-        <label for="uberCredit">$200 annual Uber Cash credit?</label>
-        <select id="uberCredit" required>
-            <option value="">Select an option</option>
-            <option value="no">No value</option>
-            <option value="minimal">Minimal value</option>
-            <option value="some">Some value</option>
-            <option value="majority">Majority value</option>
-            <option value="full">Full value</option>
-        </select>
-    </div>
-    <div class="question split">
-        <label for="entertainmentCredit">$240 annual Digital Entertainment Credit?</label>
-        <select id="entertainmentCredit" required>
-            <option value="">Select an option</option>
-            <option value="no">No value</option>
-            <option value="minimal">Minimal value</option>
-            <option value="some">Some value</option>
-            <option value="majority">Majority value</option>
-            <option value="full">Full value</option>
-        </select>
-    </div>
-    <div class="question split">
-        <label for="hotelCredit">$200 annual Hotel credit?</label>
-        <select id="hotelCredit" required>
-            <option value="">Select an option</option>
-            <option value="no">No value</option>
-            <option value="minimal">Minimal value</option>
-            <option value="some">Some value</option>
-            <option value="majority">Majority value</option>
-            <option value="full">Full value</option>
-        </select>
-    </div>
-    <div class="question split">
-        <label for="walmartCredit">$155 Walmart+ credit?</label>
-        <select id="walmartCredit" required>
-            <option value="">Select an option</option>
-            <option value="no">No value</option>
-            <option value="minimal">Minimal value</option>
-            <option value="some">Some value</option>
-            <option value="majority">Majority value</option>
-            <option value="full">Full value</option>
-        </select>
-    </div>
-    <div class="question split">
-        <label for="equinoxCredit">$300 annual Equinox credit?</label>
-        <select id="equinoxCredit" required>
-            <option value="">Select an option</option>
-            <option value="no">No value</option>
-            <option value="minimal">Minimal value</option>
-            <option value="some">Some value</option>
-            <option value="majority">Majority value</option>
-            <option value="full">Full value</option>
-        </select>
-    </div>
-    <div class="question split">
-        <label for="saksCredit">$100 Saks credit?</label>
-        <select id="saksCredit" required>
-            <option value="">Select an option</option>
-            <option value="no">No value</option>
-            <option value="minimal">Minimal value</option>
-            <option value="some">Some value</option>
-            <option value="majority">Majority value</option>
-            <option value="full">Full value</option>
-        </select>
-    </div>
-    <div class="question split">
-        <label for="clearCredit">$189 CLEAR credit?</label>
-        <select id="clearCredit" required>
-            <option value="">Select an option</option>
-            <option value="no">No value</option>
-            <option value="minimal">Minimal value</option>
-            <option value="some">Some value</option>
-            <option value="majority">Majority value</option>
-            <option value="full">Full value</option>
-        </select>
-    </div>
-    <div class="question split">
-        <label for="globalEntryCredit">Global Entry/TSA PreCheck credit?</label>
-        <select id="globalEntryCredit" required>
-            <option value="">Select an option</option>
-            <option value="no">No value</option>
-            <option value="minimal">Minimal value</option>
-            <option value="some">Some value</option>
-            <option value="majority">Majority value</option>
-            <option value="full">Full value</option>
-        </select>
-    </div>
-    <div class="question split">
-        <label for="soulCycleCredit">$300 SoulCycle Bike credit?</label>
-        <select id="soulCycleCredit" required>
-            <option value="">Select an option</option>
-            <option value="no">No value</option>
-            <option value="minimal">Minimal value</option>
-            <option value="some">Some value</option>
-            <option value="majority">Majority value</option>
-            <option value="full">Full value</option>
-        </select>
-    </div>
-    <div class="button-container">
-        <button onclick="nextSection()" class="cta-button">Continue</button>
-    </div>
-</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
