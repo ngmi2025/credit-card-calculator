@@ -40,6 +40,12 @@ document.addEventListener('DOMContentLoaded', function() {
             let value = this.value.replace(/[^\d]/g, '');
             this.value = value ? '$ ' + parseInt(value).toLocaleString() : '';
         });
+
+        input.addEventListener('blur', function(e) {
+            if (this.value.startsWith('$ $')) {
+                this.value = this.value.replace('$ $', '$ ');
+            }
+        });
     }
 
     formatCurrency(flightSpend);
