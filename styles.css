@@ -115,13 +115,12 @@ h1 {
 
 .question label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-weight: bold;
 }
 
-.input-group {
-    display: flex;
-    align-items: center;
+.input-group, .input-wrapper {
+    width: 100%;
 }
 
 select, input[type="text"] {
@@ -160,7 +159,6 @@ select {
     top: 50%;
     transform: translateY(-50%);
     color: var(--secondary-text-color);
-    z-index: 1;
 }
 
 .no-currency::before {
