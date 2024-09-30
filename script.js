@@ -1,7 +1,7 @@
 function calculatePoints() {
-    const flightSpend = parseFloat(document.getElementById('flightSpend').value.replace(/[$,]/g, '')) || 0;
-    const hotelSpend = parseFloat(document.getElementById('hotelSpend').value.replace(/[$,]/g, '')) || 0;
-    const otherSpend = parseFloat(document.getElementById('otherSpend').value.replace(/[$,]/g, '')) || 0;
+    const flightSpend = parseFloat(document.getElementById('flightSpend').value.replace(/[^\d.-]/g, '')) || 0;
+    const hotelSpend = parseFloat(document.getElementById('hotelSpend').value.replace(/[^\d.-]/g, '')) || 0;
+    const otherSpend = parseFloat(document.getElementById('otherSpend').value.replace(/[^\d.-]/g, '')) || 0;
 
     const travelPoints = (flightSpend + hotelSpend) * 5;
     const otherPoints = otherSpend;
@@ -66,6 +66,8 @@ document.querySelectorAll('.input-wrapper input[type="text"]').forEach(input => 
     input.addEventListener('blur', function() {
         if (this.value) {
             this.value = parseInt(this.value.replace(/[^\d]/g, '')).toLocaleString();
+        } else {
+            this.value = '0';
         }
     });
 });
@@ -74,3 +76,6 @@ document.querySelectorAll('.input-wrapper input[type="text"]').forEach(input => 
 document.querySelectorAll('.input-wrapper input[type="text"]').forEach(input => {
     input.value = '0';
 });
+
+// Add event listener for the Calculate Points button
+document.querySelector('.cta-button').addEventListener('click', calculatePoints);
