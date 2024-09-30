@@ -38,14 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function formatCurrency(input) {
         input.addEventListener('input', function(e) {
             let value = this.value.replace(/[^\d]/g, '');
-            if (value.length > 2) {
-                value = value.slice(0, -2) + '.' + value.slice(-2);
-            } else if (value.length === 2) {
-                value = '0.' + value;
-            } else if (value.length === 1) {
-                value = '0.0' + value;
-            }
-            this.value = value ? '$ ' + parseFloat(value).toFixed(2) : '';
+            this.value = value ? '$ ' + parseInt(value).toLocaleString() : '';
         });
     }
 
@@ -58,14 +51,14 @@ document.addEventListener('DOMContentLoaded', function() {
         let points = 10000 + Math.floor(Math.random() * 5000);
         totalPoints.value = points.toLocaleString() + ' points';
         welcomeBonus.value = '80,000 points';
-        amexValuation.value = '$ ' + (2000 + Math.floor(Math.random() * 500)).toFixed(2);
+        amexValuation.value = '$ ' + (2000 + Math.floor(Math.random() * 500));
 
-        section1.classList.add('hidden');
         results.classList.remove('hidden');
         progress.style.width = '33%';
     });
 
     continueToSection2Btn.addEventListener('click', function() {
+        section1.classList.add('hidden');
         results.classList.add('hidden');
         section2.classList.remove('hidden');
         progress.style.width = '66%';
@@ -75,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         section2.classList.add('hidden');
         section1.classList.remove('hidden');
+        results.classList.add('hidden');
         progress.style.width = '33%';
     });
 
