@@ -37,17 +37,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function formatCurrency(input) {
         input.addEventListener('input', function(e) {
-            // Remove all non-digit characters except for the dollar sign
+            // Remove all non-digit characters
             let value = this.value.replace(/[^\d]/g, '');
             
-            // Ensure there's only one dollar sign, and format with commas
-            this.value = value ? '$ ' + parseInt(value).toLocaleString() : '';
+            // Format with commas, without adding a dollar sign
+            this.value = value ? parseInt(value).toLocaleString() : '';
         });
 
-        // On blur, ensure that no double dollar signs are present
+        // On blur, ensure there's no dollar sign in the input
         input.addEventListener('blur', function(e) {
-            // Ensure only one dollar sign
-            this.value = this.value.trim().replace(/^\$?\s?\$/, '$').trim();
+            this.value = this.value.replace(/\$/g, '').trim();
         });
     }
 
