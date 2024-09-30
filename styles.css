@@ -29,7 +29,14 @@ body {
 
 h1, h2 {
     color: var(--primary-color);
+}
+
+h1 {
     text-align: center;
+}
+
+.align-left {
+    text-align: left;
 }
 
 .intro {
@@ -112,6 +119,10 @@ select {
 
 .custom-input {
     margin-top: 10px;
+}
+
+.input-wrapper {
+    position: relative;
 }
 
 .input-wrapper::before {
