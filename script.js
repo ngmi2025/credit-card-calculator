@@ -1,7 +1,7 @@
 function calculatePoints() {
-    const flightSpend = parseFloat(document.getElementById('flightSpend').value.replace('$', '').replace(',', '')) || 0;
-    const hotelSpend = parseFloat(document.getElementById('hotelSpend').value.replace('$', '').replace(',', '')) || 0;
-    const otherSpend = parseFloat(document.getElementById('otherSpend').value.replace('$', '').replace(',', '')) || 0;
+    const flightSpend = parseFloat(document.getElementById('flightSpend').value.replace(/[$,]/g, '')) || 0;
+    const hotelSpend = parseFloat(document.getElementById('hotelSpend').value.replace(/[$,]/g, '')) || 0;
+    const otherSpend = parseFloat(document.getElementById('otherSpend').value.replace(/[$,]/g, '')) || 0;
 
     const travelPoints = (flightSpend + hotelSpend) * 5;
     const otherPoints = otherSpend;
@@ -46,35 +46,31 @@ document.getElementById('travelFrequency').addEventListener('change', function()
     document.getElementById('customTravelFrequency').classList.toggle('hidden', this.value !== 'custom');
 });
 
-// Add error class on invalid input and handle currency formatting
-document.querySelectorAll('input[required]').forEach(input => {
-    input.addEventListener('blur', function() {
-        if (!this.classList.contains('no-currency')) {
-            let value = this.value.replace(/[^\d]/g, '');
-            this.value = value ? '$' + parseInt(value).toLocaleString() : '';
-        }
-        this.classList.toggle('error', !this.value || this.value === '$0');
-    });
-});
-
 // Format currency inputs
-document.querySelectorAll('input[type="text"]').forEach(input => {
-    input.addEventListener('input', function(e) {
-        if (this.classList.contains('no-currency')) {
-            // For non-currency fields, just allow numbers
-            this.value = this.value.replace(/[^\d]/g, '');
-        } else {
-            let value = this.value.replace(/[^\d]/g, '');
-            if (value) {
-                this.value = '$' + parseInt(value).toLocaleString();
-            } else {
-                this.value = '';
-            }
+function formatCurrency(input) {
+    let value = input.value.replace(/[^\d]/g, '');
+    if (value) {
+        value = parseInt(value).toLocaleString();
+        input.value = value;
+    } else {
+        input.value = '';
+    }
+}
+
+// Add event listeners for currency formatting
+document.querySelectorAll('.input-wrapper input[type="text"]').forEach(input => {
+    input.addEventListener('input', function() {
+        formatCurrency(this);
+    });
+
+    input.addEventListener('blur', function() {
+        if (this.value) {
+            this.value = parseInt(this.value.replace(/[^\d]/g, '')).toLocaleString();
         }
     });
 });
 
 // Initialize currency inputs
 document.querySelectorAll('.input-wrapper input[type="text"]').forEach(input => {
-    input.value = '$0';
+    input.value = '0';
 });
