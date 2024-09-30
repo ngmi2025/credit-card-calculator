@@ -15,26 +15,25 @@ function calculatePoints() {
     document.getElementById('amexValuation').value = '$' + totalValuation.toFixed(2);
 
     document.getElementById('results').classList.remove('hidden');
-    nextSection(); // Automatically move to the next section
 }
 
 function nextSection() {
-    const currentSection = document.querySelector('.section:not(.hidden)');
-    const nextSection = currentSection.nextElementSibling;
+    const section1 = document.getElementById('section1');
+    const results = document.getElementById('results');
+    const section2 = document.getElementById('section2');
+    const progress = document.getElementById('progress');
 
-    if (nextSection) {
-        currentSection.classList.add('hidden');
-        nextSection.classList.remove('hidden');
-
-        // Update progress bar
-        const progress = document.getElementById('progress');
-        if (nextSection.id === 'section2') {
-            progress.style.width = '66.66%';
-            document.querySelectorAll('.step')[1].classList.add('active');
-        } else if (nextSection.id === 'results') {
-            progress.style.width = '100%';
-            document.querySelectorAll('.step')[2].classList.add('active');
-        }
+    if (!section2.classList.contains('hidden')) {
+        // We're on section 2, move to final results (not implemented yet)
+        progress.style.width = '100%';
+        document.querySelectorAll('.step')[2].classList.add('active');
+    } else {
+        // We're on the first section or results, move to section 2
+        section1.classList.add('hidden');
+        results.classList.add('hidden');
+        section2.classList.remove('hidden');
+        progress.style.width = '66.66%';
+        document.querySelectorAll('.step')[1].classList.add('active');
     }
 }
 
