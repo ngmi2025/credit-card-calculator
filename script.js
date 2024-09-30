@@ -49,8 +49,9 @@ document.getElementById('travelFrequency').addEventListener('change', function()
 // Add error class on invalid input and handle currency formatting
 document.querySelectorAll('input[required]').forEach(input => {
     input.addEventListener('blur', function() {
-        if (!this.classList.contains('no-currency') && this.value && !this.value.startsWith('$')) {
-            this.value = '$' + this.value;
+        if (!this.classList.contains('no-currency')) {
+            let value = this.value.replace(/[^\d]/g, '');
+            this.value = value ? '$' + parseInt(value).toLocaleString() : '';
         }
         this.classList.toggle('error', !this.value || this.value === '$0');
     });
@@ -65,9 +66,15 @@ document.querySelectorAll('input[type="text"]').forEach(input => {
         } else {
             let value = this.value.replace(/[^\d]/g, '');
             if (value) {
-                value = parseInt(value).toLocaleString();
-                this.value = '$' + value;
+                this.value = '$' + parseInt(value).toLocaleString();
+            } else {
+                this.value = '';
             }
         }
     });
+});
+
+// Initialize currency inputs
+document.querySelectorAll('.input-wrapper input[type="text"]').forEach(input => {
+    input.value = '$0';
 });
