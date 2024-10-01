@@ -26,16 +26,8 @@
                 <h2>Travel Profile</h2>
                 <div class="question-group">
                     <label for="travelFrequency">How many times do you travel per year?</label>
-                    <div class="input-group">
-                        <select id="travelFrequency" required>
-                            <option value="">Select an option</option>
-                            <option value="0">0-1</option>
-                            <option value="2">2-3</option>
-                            <option value="4">4-6</option>
-                            <option value="7">7+</option>
-                            <option value="custom">Other (specify)</option>
-                        </select>
-                        <input type="text" id="customTravelFrequency" class="hidden custom-input no-currency" placeholder="Enter value">
+                    <div class="input-wrapper no-currency">
+                        <input type="number" id="travelFrequency" min="0" step="1" placeholder="Enter number of trips" required>
                     </div>
                 </div>
                 <div class="question-group">
