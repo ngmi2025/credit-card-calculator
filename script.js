@@ -123,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('results').classList.add('hidden');
         }
         updateProgressBar(nextSection);
+        window.scrollTo(0, 0);
     }
 
     document.getElementById('calculatePointsBtn').addEventListener('click', function() {
@@ -167,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Format currency inputs and auto-advance
+    // Format currency inputs
     const currencyInputs = document.querySelectorAll('.input-wrapper input[type="text"]:not(#travelFrequency)');
     currencyInputs.forEach(input => {
         input.addEventListener('input', function(e) {
@@ -182,17 +183,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
-
-        // Auto-advance
-        input.addEventListener('keyup', function(e) {
-            if (e.key === 'Enter') {
-                const inputs = Array.from(document.querySelectorAll('input, select'));
-                const index = inputs.indexOf(e.target);
-                if (index < inputs.length - 1) {
-                    inputs[index + 1].focus();
-                }
-            }
-        });
     });
 
     // Ensure travel frequency input only accepts numbers
@@ -200,30 +190,4 @@ document.addEventListener('DOMContentLoaded', function() {
     travelFrequencyInput.addEventListener('input', function(e) {
         this.value = this.value.replace(/[^\d]/g, '');
     });
-
-    // Touch-friendly dropdowns for mobile
-    if ('ontouchstart' in window) {
-        const selects = document.querySelectorAll('select');
-        selects.forEach(select => {
-            select.addEventListener('touchstart', function(e) {
-                e.preventDefault();
-                const modal = document.createElement('div');
-                modal.className = 'modal';
-                const modalContent = document.createElement('div');
-                modalContent.className = 'modal-content';
-                const options = Array.from(this.options);
-                options.forEach(option => {
-                    const button = document.createElement('button');
-                    button.textContent = option.text;
-                    button.addEventListener('click', function() {
-                        select.value = option.value;
-                        document.body.removeChild(modal);
-                    });
-                    modalContent.appendChild(button);
-                });
-                modal.appendChild(modalContent);
-                document.body.appendChild(modal);
-            });
-        });
-    }
 });
