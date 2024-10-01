@@ -55,7 +55,7 @@ h1 {
 }
 
 .progress {
-    width: 25%; /* Changed from 33.33% to accommodate 4 steps */
+    width: 25%;
     height: 100%;
     background-color: var(--primary-color);
     border-radius: 10px;
@@ -259,17 +259,16 @@ select {
     text-decoration: underline;
 }
 
-/* New styles for section 3 */
-#section3 .question-title {
-    font-weight: bold;
+.question-title {
     display: block;
+    font-weight: bold;
     margin-bottom: 5px;
 }
 
-#section3 .question-description {
+.question-description {
+    display: block;
     font-size: 0.9em;
     color: var(--secondary-text-color);
-    display: block;
     margin-bottom: 10px;
 }
 
