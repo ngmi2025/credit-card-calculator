@@ -16,9 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('totalPoints').value = Math.round(totalPoints).toLocaleString() + ' points';
         document.getElementById('welcomeBonus').value = WELCOME_BONUS.toLocaleString() + ' points';
         document.getElementById('amexValuation').value = '$' + totalValuation.toFixed(2);
-
-        document.getElementById('results').classList.remove('hidden');
-        document.getElementById('continueBtn').classList.remove('hidden');
     }
 
     function nextSection(currentSection, nextSection) {
