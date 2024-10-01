@@ -103,4 +103,10 @@ document.addEventListener('DOMContentLoaded', function() {
         progress.style.width = '33.33%';
         document.querySelectorAll('.step')[1].classList.remove('active');
     });
+
+    // Add event listener for the Continue to Section 3 button
+    document.getElementById('continueToSection3Btn').addEventListener('click', function() {
+        // Placeholder for section 3 logic
+        alert('Moving to section 3 (not implemented yet)');
+    });
 });
