@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
             progress.style.width = '66.66%';
             document.querySelectorAll('.step')[1].classList.add('active');
         }
-        document.getElementById('continueBtn').classList.add('hidden');
     }
 
     // Show/hide custom input fields based on dropdown selection
@@ -88,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add event listener for the Calculate Points button
     document.getElementById('calculatePointsBtn').addEventListener('click', calculatePoints);
 
-    // Add event listener for the Continue button
+    // Add event listener for the Continue button in results section
     document.getElementById('continueBtn').addEventListener('click', nextSection);
 
     // Add event listener for the back link
