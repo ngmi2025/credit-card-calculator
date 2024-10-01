@@ -138,16 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
         nextSection('section3', 'section2');
     });
 
-    // Handle custom input fields
-    document.getElementById('travelFrequency').addEventListener('change', function() {
-        const customInput = document.getElementById('customTravelFrequency');
-        if (this.value === 'custom') {
-            customInput.classList.remove('hidden');
-        } else {
-            customInput.classList.add('hidden');
-        }
-    });
-
+    // Handle custom input for home airport
     document.getElementById('homeAirport').addEventListener('change', function() {
         const customInput = document.getElementById('customHomeAirport');
         if (this.value === 'custom') {
@@ -158,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Format currency inputs
-    const currencyInputs = document.querySelectorAll('.input-wrapper input[type="text"]');
+    const currencyInputs = document.querySelectorAll('.input-wrapper:not(.no-currency) input[type="text"]');
     currencyInputs.forEach(input => {
         input.addEventListener('input', function(e) {
             let value = e.target.value.replace(/[^\d]/g, '');
