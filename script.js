@@ -113,11 +113,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('calculatePointsBtn').addEventListener('click', function() {
         calculatePoints();
-        nextSection('section1', 'results');
+        document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
     });
 
     document.getElementById('continueBtn').addEventListener('click', function() {
-        nextSection('results', 'section2');
+        nextSection('section1', 'section2');
     });
 
     document.getElementById('continueToSection3Btn').addEventListener('click', function() {
@@ -136,6 +136,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('backToSection2').addEventListener('click', function(e) {
         e.preventDefault();
         nextSection('section3', 'section2');
+    });
+
+    document.getElementById('backToSection3').addEventListener('click', function(e) {
+        e.preventDefault();
+        nextSection('section4', 'section3');
     });
 
     // Handle custom input for home airport
