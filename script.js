@@ -108,6 +108,9 @@ document.addEventListener('DOMContentLoaded', function() {
     function nextSection(currentSection, nextSection) {
         document.getElementById(currentSection).classList.add('hidden');
         document.getElementById(nextSection).classList.remove('hidden');
+        if (nextSection !== 'section1') {
+            document.getElementById('results').classList.add('hidden');
+        }
         updateProgressBar(nextSection);
     }
 
