@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         switch(currentSection) {
             case 'section1':
-            case 'results':
                 width = '25%';
                 activeIndex = 0;
                 break;
@@ -47,6 +46,10 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'section3':
                 width = '75%';
                 activeIndex = 2;
+                break;
+            case 'results':
+                width = '100%';
+                activeIndex = 3;
                 break;
         }
 
@@ -104,12 +107,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add event listener for the Calculate Points button
     document.getElementById('calculatePointsBtn').addEventListener('click', function() {
         calculatePoints();
-        document.getElementById('section1').classList.add('hidden');
-        document.getElementById('results').classList.remove('hidden');
+        // Scroll to the results section
+        document.getElementById('results').scrollIntoView({behavior: 'smooth'});
     });
 
     // Add event listener for the Continue button in results section
     document.getElementById('continueBtn').addEventListener('click', function() {
+        document.getElementById('section1').classList.add('hidden');
+        document.getElementById('results').classList.add('hidden');
         nextSection('results', 'section2');
     });
 
@@ -127,7 +132,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add event listener for the back link in section 2
     document.getElementById('backToSection1').addEventListener('click', function(e) {
         e.preventDefault();
-        nextSection('section2', 'section1');
+        document.getElementById('section1').classList.remove('hidden');
+        document.getElementById('results').classList.remove('hidden');
+        document.getElementById('section2').classList.add('hidden');
+        updateProgressBar('section1');
     });
 
     // Add event listener for the back link in section 3
