@@ -181,24 +181,6 @@ select, input[type="text"] {
     margin-bottom: 20px;
 }
 
-/* Specific styles for section 3 */
-#section3 .question-group {
-    margin-bottom: 30px;
-}
-
-#section3 .question-title {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-}
-
-#section3 .question-description {
-    font-size: 0.9em;
-    color: var(--secondary-text-color);
-    display: block;
-    margin-bottom: 10px;
-}
-
 @media (max-width: 767px) {
     .container {
         padding: 15px;
