@@ -90,33 +90,15 @@
                 </div>
             </div>
 
-            <div id="results" class="hidden">
-                <h2>Results</h2>
-                <div class="question-group">
-                    <label for="totalPoints">Total Points Earned:</label>
-                    <input type="text" id="totalPoints" readonly>
-                </div>
-                <div class="question-group">
-                    <label for="welcomeBonus">Current Welcome Bonus Offer:</label>
-                    <input type="text" id="welcomeBonus" readonly>
-                </div>
-                <div class="question-group">
-                    <label for="amexValuation">Amex Platinum Card Valuation:</label>
-                    <input type="text" id="amexValuation" readonly>
-                </div>
-                <div class="button-container">
-                    <button id="continueToSection2" class="cta-button">Continue</button>
-                </div>
-            </div>
-
             <div class="section hidden" id="section2">
                 <a href="#" id="backToSection1" class="back-link">← Back to previous section</a>
                 <h2>Card Benefits</h2>
                 <p class="subheading">How likely are you to use the following credit card benefits:</p>
+                
                 <div class="question-group">
-                    <label for="airportLoungeAccess">Airport lounge access?</label>
+                    <label for="airlineCredit">$200 airline incidental credit?</label>
                     <div class="input-group">
-                        <select id="airportLoungeAccess" required>
+                        <select id="airlineCredit" required>
                             <option value="">Select an option</option>
                             <option value="0">I won't use it</option>
                             <option value="0.5">I'll use some of it</option>
@@ -125,7 +107,7 @@
                     </div>
                 </div>
                 <div class="question-group">
-                    <label for="uberCredit">$200 annual Uber credit?</label>
+                    <label for="uberCredit">$200 annual Uber Cash credit?</label>
                     <div class="input-group">
                         <select id="uberCredit" required>
                             <option value="">Select an option</option>
@@ -136,9 +118,9 @@
                     </div>
                 </div>
                 <div class="question-group">
-                    <label for="airlineCredit">$200 annual airline fee credit?</label>
+                    <label for="entertainmentCredit">$240 annual Digital Entertainment Credit?</label>
                     <div class="input-group">
-                        <select id="airlineCredit" required>
+                        <select id="entertainmentCredit" required>
                             <option value="">Select an option</option>
                             <option value="0">I won't use it</option>
                             <option value="0.5">I'll use some of it</option>
@@ -223,9 +205,26 @@
                         </select>
                     </div>
                 </div>
-                <div class="button-container">
-                    <button id="continueToSection3" class="cta-button">Continue</button>
+            </div>
+
+            <div id="results" class="hidden">
+                <h2>Results</h2>
+                <div class="question-group">
+                    <label for="totalPoints">Total Points Earned:</label>
+                    <input type="text" id="totalPoints" readonly>
                 </div>
+                <div class="question-group">
+                    <label for="welcomeBonus">Current Welcome Bonus Offer:</label>
+                    <input type="text" id="welcomeBonus" readonly>
+                </div>
+                <div class="question-group">
+                    <label for="amexValuation">Amex Platinum Card Valuation:</label>
+                    <input type="text" id="amexValuation" readonly>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <button id="continueBtn" class="cta-button hidden">Continue</button>
             </div>
         </div>
     </div>
