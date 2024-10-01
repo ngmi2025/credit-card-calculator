@@ -17,8 +17,92 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('welcomeBonus').value = WELCOME_BONUS.toLocaleString() + ' points';
         document.getElementById('amexValuation').value = '$' + totalValuation.toFixed(2);
 
-        // Show results section
         document.getElementById('results').classList.remove('hidden');
+    }
+
+    function calculateSection2Value() {
+        const credits = [
+            { id: 'airlineCredit', value: 200 },
+            { id: 'uberCredit', value: 200 },
+            { id: 'saksCredit', value: 100 },
+            { id: 'equinoxCredit', value: 300 },
+            { id: 'entertainmentCredit', value: 240 },
+            { id: 'clearCredit', value: 189 },
+            { id: 'globalEntryCredit', value: 100 },
+            { id: 'soulCycleCredit', value: 300 }
+        ];
+
+        return credits.reduce((total, credit) => {
+            const usage = document.getElementById(credit.id).value;
+            switch (usage) {
+                case '0': return total;
+                case '0.5': return total + credit.value * 0.5;
+                case '1': return total + credit.value;
+                default: return total;
+            }
+        }, 0);
+    }
+
+    function calculateSection3Value() {
+        const travelFrequency = parseInt(document.getElementById('travelFrequency').value) || 0;
+        const perks = ['loungeAccess', 'partnerStatus', 'fhrAndIap', 'cardProtections'];
+        
+        return perks.reduce((total, perkId) => {
+            const usage = document.getElementById(perkId).value;
+            switch (usage) {
+                case '0': return total;
+                case '0.5': return total + travelFrequency * 40 * 0.5;
+                case '1': return total + travelFrequency * 40;
+                default: return total;
+            }
+        }, 0);
+    }
+
+    function calculateFinalValuation() {
+        const totalPoints = parseInt(document.getElementById('totalPoints').value.replace(/[^\d.-]/g, '')) || 0;
+        const pointsValue = totalPoints * POINT_VALUE;
+        const section2Value = calculateSection2Value();
+        const section3Value = calculateSection3Value();
+
+        const yearlyValue = pointsValue + section2Value + section3Value;
+        const signupBonusValue = WELCOME_BONUS * POINT_VALUE;
+        const firstYearValue = yearlyValue + signupBonusValue;
+        const secondYearValue = yearlyValue;
+
+        document.getElementById('yearlyValue').value = '$' + yearlyValue.toFixed(2);
+        document.getElementById('signupBonusValue').value = '$' + signupBonusValue.toFixed(2);
+        document.getElementById('firstYearValue').value = '$' + firstYearValue.toFixed(2);
+        document.getElementById('secondYearValue').value = '$' + secondYearValue.toFixed(2);
+
+        document.getElementById('section3').classList.add('hidden');
+        document.getElementById('section4').classList.remove('hidden');
+        updateProgressBar('section4');
+    }
+
+    function updateProgressBar(currentSection) {
+        const progress = document.getElementById('progress');
+        const steps = document.querySelectorAll('.step');
+        
+        steps.forEach(step => step.classList.remove('active'));
+        
+        switch(currentSection) {
+            case 'section1':
+                progress.style.width = '25%';
+                steps[0].classList.add('active');
+                break;
+            case 'section2':
+                progress.style.width = '50%';
+                steps[1].classList.add('active');
+                break;
+            case 'section3':
+                progress.style.width = '75%';
+                steps[2].classList.add('active');
+                break;
+            case 'section4':
+                progress.style.width = '100%';
+                steps[3].classList.add('active');
+                break;
+        }
     }
 
     function nextSection(currentSection, nextSection) {
@@ -27,120 +111,66 @@ document.addEventListener('DOMContentLoaded', function() {
         updateProgressBar(nextSection);
     }
 
-    function updateProgressBar(currentSection) {
-        const progress = document.getElementById('progress');
-        const steps = document.querySelectorAll('.step');
-        
-        let width = '25%';
-        let activeIndex = 0;
-
-        switch(currentSection) {
-            case 'section1':
-                width = '25%';
-                activeIndex = 0;
-                break;
-            case 'section2':
-                width = '50%';
-                activeIndex = 1;
-                break;
-            case 'section3':
-                width = '75%';
-                activeIndex = 2;
-                break;
-            case 'results':
-                width = '100%';
-                activeIndex = 3;
-                break;
-        }
-
-        progress.style.width = width;
-        steps.forEach((step, index) => {
-            if (index <= activeIndex) {
-                step.classList.add('active');
-            } else {
-                step.classList.remove('active');
-            }
-        });
-    }
-
-    // Show/hide custom input fields based on dropdown selection
-    document.querySelectorAll('select').forEach(select => {
-        select.addEventListener('change', function() {
-            const customInput = this.nextElementSibling;
-            if (customInput && customInput.classList.contains('custom-input')) {
-                customInput.classList.toggle('hidden', this.value !== 'custom');
-            }
-        });
-    });
-
-    // Format currency inputs
-    function formatCurrency(input) {
-        let value = input.value.replace(/[^\d]/g, '');
-        if (value) {
-            value = parseInt(value).toLocaleString();
-            input.value = value;
-        } else {
-            input.value = '';
-        }
-    }
-
-    // Add event listeners for currency formatting
-    document.querySelectorAll('.input-wrapper input[type="text"]').forEach(input => {
-        input.addEventListener('input', function() {
-            formatCurrency(this);
-        });
-
-        input.addEventListener('blur', function() {
-            if (this.value) {
-                this.value = parseInt(this.value.replace(/[^\d]/g, '')).toLocaleString();
-            } else {
-                this.value = '0';
-            }
-        });
-    });
-
-    // Initialize currency inputs
-    document.querySelectorAll('.input-wrapper input[type="text"]').forEach(input => {
-        input.value = '0';
-    });
-
-    // Add event listener for the Calculate Points button
     document.getElementById('calculatePointsBtn').addEventListener('click', function() {
         calculatePoints();
-        // Scroll to the results section
-        document.getElementById('results').scrollIntoView({behavior: 'smooth'});
+        nextSection('section1', 'results');
     });
 
-    // Add event listener for the Continue button in results section
     document.getElementById('continueBtn').addEventListener('click', function() {
-        document.getElementById('section1').classList.add('hidden');
-        document.getElementById('results').classList.add('hidden');
         nextSection('results', 'section2');
     });
 
-    // Add event listener for the Continue button in section 2
     document.getElementById('continueToSection3Btn').addEventListener('click', function() {
         nextSection('section2', 'section3');
     });
 
-    // Add event listener for the Calculate Valuation button in section 3
     document.getElementById('calculateValuationBtn').addEventListener('click', function() {
-        // Placeholder for final valuation calculation
-        alert('Final valuation calculation (not implemented yet)');
+        calculateFinalValuation();
     });
 
-    // Add event listener for the back link in section 2
     document.getElementById('backToSection1').addEventListener('click', function(e) {
         e.preventDefault();
-        document.getElementById('section1').classList.remove('hidden');
-        document.getElementById('results').classList.remove('hidden');
-        document.getElementById('section2').classList.add('hidden');
-        updateProgressBar('section1');
+        nextSection('section2', 'section1');
     });
 
-    // Add event listener for the back link in section 3
     document.getElementById('backToSection2').addEventListener('click', function(e) {
         e.preventDefault();
         nextSection('section3', 'section2');
+    });
+
+    // Handle custom input fields
+    document.getElementById('travelFrequency').addEventListener('change', function() {
+        const customInput = document.getElementById('customTravelFrequency');
+        if (this.value === 'custom') {
+            customInput.classList.remove('hidden');
+        } else {
+            customInput.classList.add('hidden');
+        }
+    });
+
+    document.getElementById('homeAirport').addEventListener('change', function() {
+        const customInput = document.getElementById('customHomeAirport');
+        if (this.value === 'custom') {
+            customInput.classList.remove('hidden');
+        } else {
+            customInput.classList.add('hidden');
+        }
+    });
+
+    // Format currency inputs
+    const currencyInputs = document.querySelectorAll('.input-wrapper input[type="text"]');
+    currencyInputs.forEach(input => {
+        input.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/[^\d]/g, '');
+            if (value) {
+                value = parseInt(value, 10);
+                e.target.value = value.toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                });
+            }
+        });
     });
 });
