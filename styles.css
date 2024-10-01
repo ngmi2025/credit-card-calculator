@@ -202,18 +202,13 @@ select {
     input[type="text"],
     select,
     .question-group input[type="text"],
-    .question-group input[readonly] {
+    .question-group input[readonly],
+    .cta-button {
         width: 100%;
         font-size: 16px;
         padding: 12px;
         margin: 0;
         box-sizing: border-box;
-    }
-
-    .cta-button {
-        width: 100%;
-        padding: 15px;
-        font-size: 18px;
     }
 
     .input-group,
@@ -223,5 +218,9 @@ select {
 
     select {
         background-position-x: 95%;
+    }
+
+    .button-container {
+        text-align: center;
     }
 }
