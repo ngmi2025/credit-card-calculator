@@ -213,14 +213,9 @@ select, input[type="text"] {
     }
 }
 
-/* Styles for long questions in section 3 */
+/* Specific styles for section 3 */
 #section3 .question-group {
     margin-bottom: 30px;
-}
-
-#section3 .question-group label {
-    display: block;
-    margin-bottom: 10px;
 }
 
 #section3 .question-title {
@@ -236,36 +231,25 @@ select, input[type="text"] {
     margin-bottom: 10px;
 }
 
-#section3 .input-group {
-    margin-top: 10px;
-}
-
-@media (min-width: 768px) {
-    #section3 .question-group {
-        display: flex;
-        align-items: flex-start;
-    }
-
-    #section3 .question-group label {
-        flex: 1;
-        padding-right: 20px;
-    }
-
-    #section3 .input-group {
-        width: 200px;
-        margin-top: 0;
-    }
-}
-
-/* Ensure these styles don't affect other sections */
+/* Ensure other sections maintain their original layout */
 #section1 .question-group,
 #section2 .question-group,
 #results .question-group {
-    display: block;
+    margin-bottom: 20px;
 }
 
 #section1 .input-group,
 #section2 .input-group,
 #results .input-group {
+    display: flex;
+    align-items: center;
+}
+
+#section1 select,
+#section2 select,
+#results select,
+#section1 input[type="text"],
+#section2 input[type="text"],
+#results input[type="text"] {
     width: 100%;
 }
