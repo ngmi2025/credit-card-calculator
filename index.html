@@ -91,6 +91,25 @@
                 </div>
             </div>
 
+            <div id="results" class="hidden">
+                <h2>Results</h2>
+                <div class="question-group">
+                    <label for="totalPoints">Total Points Earned:</label>
+                    <input type="text" id="totalPoints" readonly>
+                </div>
+                <div class="question-group">
+                    <label for="welcomeBonus">Current Welcome Bonus Offer:</label>
+                    <input type="text" id="welcomeBonus" readonly>
+                </div>
+                <div class="question-group">
+                    <label for="amexValuation">Amex Platinum Card Valuation:</label>
+                    <input type="text" id="amexValuation" readonly>
+                </div>
+                <div class="button-container">
+                    <button id="continueBtn" class="cta-button">Continue</button>
+                </div>
+            </div>
+
             <div class="section hidden" id="section2">
                 <a href="#" id="backToSection1" class="back-link">← Back to previous section</a>
                 <h2>Card Benefits</h2>
@@ -119,9 +138,9 @@
                     </div>
                 </div>
                 <div class="question-group">
-                    <label for="entertainmentCredit">$240 annual Digital Entertainment Credit?</label>
+                    <label for="saksCredit">$100 Saks Fifth Avenue credit?</label>
                     <div class="input-group">
-                        <select id="entertainmentCredit" required>
+                        <select id="saksCredit" required>
                             <option value="">Select an option</option>
                             <option value="0">I won't use it</option>
                             <option value="0.5">I'll use some of it</option>
@@ -130,29 +149,7 @@
                     </div>
                 </div>
                 <div class="question-group">
-                    <label for="hotelCredit">$200 annual Hotel credit?</label>
-                    <div class="input-group">
-                        <select id="hotelCredit" required>
-                            <option value="">Select an option</option>
-                            <option value="0">I won't use it</option>
-                            <option value="0.5">I'll use some of it</option>
-                            <option value="1">I'll use all of it</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="question-group">
-                    <label for="walmartCredit">$155 Walmart+ credit?</label>
-                    <div class="input-group">
-                        <select id="walmartCredit" required>
-                            <option value="">Select an option</option>
-                            <option value="0">I won't use it</option>
-                            <option value="0.5">I'll use some of it</option>
-                            <option value="1">I'll use all of it</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="question-group">
-                    <label for="equinoxCredit">$300 annual Equinox credit?</label>
+                    <label for="equinoxCredit">$300 Equinox credit?</label>
                     <div class="input-group">
                         <select id="equinoxCredit" required>
                             <option value="">Select an option</option>
@@ -163,9 +160,9 @@
                     </div>
                 </div>
                 <div class="question-group">
-                    <label for="saksCredit">$100 Saks credit?</label>
+                    <label for="entertainmentCredit">$240 Digital Entertainment credit?</label>
                     <div class="input-group">
-                        <select id="saksCredit" required>
+                        <select id="entertainmentCredit" required>
                             <option value="">Select an option</option>
                             <option value="0">I won't use it</option>
                             <option value="0.5">I'll use some of it</option>
@@ -278,25 +275,6 @@
                 
                 <div class="button-container">
                     <button id="calculateValuationBtn" class="cta-button">Calculate Valuation</button>
-                </div>
-            </div>
-
-            <div id="results" class="hidden">
-                <h2>Results</h2>
-                <div class="question-group">
-                    <label for="totalPoints">Total Points Earned:</label>
-                    <input type="text" id="totalPoints" readonly>
-                </div>
-                <div class="question-group">
-                    <label for="welcomeBonus">Current Welcome Bonus Offer:</label>
-                    <input type="text" id="welcomeBonus" readonly>
-                </div>
-                <div class="question-group">
-                    <label for="amexValuation">Amex Platinum Card Valuation:</label>
-                    <input type="text" id="amexValuation" readonly>
-                </div>
-                <div class="button-container">
-                    <button id="continueBtn" class="cta-button">Continue</button>
                 </div>
             </div>
         </div>
