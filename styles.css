@@ -92,7 +92,6 @@ h1 {
 .question-group label {
     display: block;
     margin-bottom: 5px;
-    font-weight: normal;
 }
 
 .input-group {
@@ -182,6 +181,24 @@ select, input[type="text"] {
     margin-bottom: 20px;
 }
 
+/* Specific styles for section 3 */
+#section3 .question-group {
+    margin-bottom: 30px;
+}
+
+#section3 .question-title {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#section3 .question-description {
+    font-size: 0.9em;
+    color: var(--secondary-text-color);
+    display: block;
+    margin-bottom: 10px;
+}
+
 @media (max-width: 767px) {
     .container {
         padding: 15px;
@@ -211,45 +228,4 @@ select, input[type="text"] {
     #results .question-group input[readonly] {
         width: 100%;
     }
-}
-
-/* Specific styles for section 3 */
-#section3 .question-group {
-    margin-bottom: 30px;
-}
-
-#section3 .question-title {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-}
-
-#section3 .question-description {
-    font-size: 0.9em;
-    color: var(--secondary-text-color);
-    display: block;
-    margin-bottom: 10px;
-}
-
-/* Ensure other sections maintain their original layout */
-#section1 .question-group,
-#section2 .question-group,
-#results .question-group {
-    margin-bottom: 20px;
-}
-
-#section1 .input-group,
-#section2 .input-group,
-#results .input-group {
-    display: flex;
-    align-items: center;
-}
-
-#section1 select,
-#section2 select,
-#results select,
-#section1 input[type="text"],
-#section2 input[type="text"],
-#results input[type="text"] {
-    width: 100%;
 }
