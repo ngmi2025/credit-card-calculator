@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('totalPoints').value = Math.round(totalPoints).toLocaleString() + ' points';
         document.getElementById('welcomeBonus').value = WELCOME_BONUS.toLocaleString() + ' points';
         document.getElementById('amexValuation').value = '$' + totalValuation.toFixed(2);
+
+        // Show results section
+        document.getElementById('results').classList.remove('hidden');
     }
 
     function nextSection(currentSection, nextSection) {
@@ -33,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         switch(currentSection) {
             case 'section1':
+            case 'results':
                 width = '25%';
                 activeIndex = 0;
                 break;
@@ -43,10 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'section3':
                 width = '75%';
                 activeIndex = 2;
-                break;
-            case 'results':
-                width = '100%';
-                activeIndex = 3;
                 break;
         }
 
@@ -104,7 +104,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add event listener for the Calculate Points button
     document.getElementById('calculatePointsBtn').addEventListener('click', function() {
         calculatePoints();
-        nextSection('section1', 'section2');
+        document.getElementById('section1').classList.add('hidden');
+        document.getElementById('results').classList.remove('hidden');
+    });
+
+    // Add event listener for the Continue button in results section
+    document.getElementById('continueBtn').addEventListener('click', function() {
+        nextSection('results', 'section2');
     });
 
     // Add event listener for the Continue button in section 2
@@ -114,14 +120,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add event listener for the Calculate Valuation button in section 3
     document.getElementById('calculateValuationBtn').addEventListener('click', function() {
-        // Placeholder for valuation calculation
-        nextSection('section3', 'results');
-    });
-
-    // Add event listener for the Continue button in results section
-    document.getElementById('continueBtn').addEventListener('click', function() {
-        // Placeholder for next action after results
-        alert('End of calculator reached');
+        // Placeholder for final valuation calculation
+        alert('Final valuation calculation (not implemented yet)');
     });
 
     // Add event listener for the back link in section 2
