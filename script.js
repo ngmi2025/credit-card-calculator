@@ -21,26 +21,46 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('continueBtn').classList.remove('hidden');
     }
 
-    function nextSection() {
-        const section1 = document.getElementById('section1');
-        const section2 = document.getElementById('section2');
-        const results = document.getElementById('results');
-        const progress = document.getElementById('progress');
+    function nextSection(currentSection, nextSection) {
+        document.getElementById(currentSection).classList.add('hidden');
+        document.getElementById(nextSection).classList.remove('hidden');
+        updateProgressBar(nextSection);
+    }
 
-        if (section1.classList.contains('hidden')) {
-            // We're on section 2, move to final results (not implemented yet)
-            section2.classList.add('hidden');
-            results.classList.remove('hidden');
-            progress.style.width = '100%';
-            document.querySelectorAll('.step')[2].classList.add('active');
-        } else {
-            // We're on the first section, move to section 2
-            section1.classList.add('hidden');
-            results.classList.add('hidden');
-            section2.classList.remove('hidden');
-            progress.style.width = '66.66%';
-            document.querySelectorAll('.step')[1].classList.add('active');
+    function updateProgressBar(currentSection) {
+        const progress = document.getElementById('progress');
+        const steps = document.querySelectorAll('.step');
+        
+        let width = '25%';
+        let activeIndex = 0;
+
+        switch(currentSection) {
+            case 'section1':
+                width = '25%';
+                activeIndex = 0;
+                break;
+            case 'section2':
+                width = '50%';
+                activeIndex = 1;
+                break;
+            case 'section3':
+                width = '75%';
+                activeIndex = 2;
+                break;
+            case 'results':
+                width = '100%';
+                activeIndex = 3;
+                break;
         }
+
+        progress.style.width = width;
+        steps.forEach((step, index) => {
+            if (index <= activeIndex) {
+                step.classList.add('active');
+            } else {
+                step.classList.remove('active');
+            }
+        });
     }
 
     // Show/hide custom input fields based on dropdown selection
@@ -85,27 +105,37 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Add event listener for the Calculate Points button
-    document.getElementById('calculatePointsBtn').addEventListener('click', calculatePoints);
-
-    // Add event listener for the Continue button in results section
-    document.getElementById('continueBtn').addEventListener('click', nextSection);
-
-    // Add event listener for the back link
-    document.getElementById('backToSection1').addEventListener('click', function(e) {
-        e.preventDefault();
-        const section1 = document.getElementById('section1');
-        const section2 = document.getElementById('section2');
-        const progress = document.getElementById('progress');
-
-        section2.classList.add('hidden');
-        section1.classList.remove('hidden');
-        progress.style.width = '33.33%';
-        document.querySelectorAll('.step')[1].classList.remove('active');
+    document.getElementById('calculatePointsBtn').addEventListener('click', function() {
+        calculatePoints();
+        nextSection('section1', 'section2');
     });
 
-    // Add event listener for the Continue to Section 3 button
+    // Add event listener for the Continue button in section 2
     document.getElementById('continueToSection3Btn').addEventListener('click', function() {
-        // Placeholder for section 3 logic
-        alert('Moving to section 3 (not implemented yet)');
+        nextSection('section2', 'section3');
+    });
+
+    // Add event listener for the Calculate Valuation button in section 3
+    document.getElementById('calculateValuationBtn').addEventListener('click', function() {
+        // Placeholder for valuation calculation
+        nextSection('section3', 'results');
+    });
+
+    // Add event listener for the Continue button in results section
+    document.getElementById('continueBtn').addEventListener('click', function() {
+        // Placeholder for next action after results
+        alert('End of calculator reached');
+    });
+
+    // Add event listener for the back link in section 2
+    document.getElementById('backToSection1').addEventListener('click', function(e) {
+        e.preventDefault();
+        nextSection('section2', 'section1');
+    });
+
+    // Add event listener for the back link in section 3
+    document.getElementById('backToSection2').addEventListener('click', function(e) {
+        e.preventDefault();
+        nextSection('section3', 'section2');
     });
 });
