@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Format currency inputs
-    const currencyInputs = document.querySelectorAll('.input-wrapper:not(.no-currency) input[type="text"]');
+    const currencyInputs = document.querySelectorAll('.input-wrapper input[type="text"]:not(#travelFrequency)');
     currencyInputs.forEach(input => {
         input.addEventListener('input', function(e) {
             let value = e.target.value.replace(/[^\d]/g, '');
@@ -163,5 +163,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
+    });
+
+    // Ensure travel frequency input only accepts numbers
+    const travelFrequencyInput = document.getElementById('travelFrequency');
+    travelFrequencyInput.addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^\d]/g, '');
     });
 });
