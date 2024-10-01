@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const WELCOME_BONUS = 80000;
     const POINT_VALUE = 0.022;
+    const ANNUAL_FEE = 595;
 
     function calculatePoints() {
         const flightSpend = parseFloat(document.getElementById('flightSpend').value.replace(/[^\d.-]/g, '')) || 0;
@@ -66,13 +67,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const yearlyValue = pointsValue + section2Value + section3Value;
         const signupBonusValue = WELCOME_BONUS * POINT_VALUE;
-        const firstYearValue = yearlyValue + signupBonusValue;
-        const secondYearValue = yearlyValue;
+        const firstYearValue = yearlyValue + signupBonusValue - ANNUAL_FEE;
+        const secondYearValue = yearlyValue - ANNUAL_FEE;
 
-        document.getElementById('yearlyValue').value = '$' + yearlyValue.toFixed(2);
-        document.getElementById('signupBonusValue').value = '$' + signupBonusValue.toFixed(2);
-        document.getElementById('firstYearValue').value = '$' + firstYearValue.toFixed(2);
-        document.getElementById('secondYearValue').value = '$' + secondYearValue.toFixed(2);
+        document.getElementById('yearlyValue').value = '$' + Math.round(yearlyValue);
+        document.getElementById('yearlyValue').style.color = 'black';
+
+        document.getElementById('signupBonusValue').value = '$' + Math.round(signupBonusValue);
+        document.getElementById('signupBonusValue').style.color = 'black';
+
+        document.getElementById('annualFee').value = '$' + ANNUAL_FEE;
+        document.getElementById('annualFee').style.color = 'red';
+
+        document.getElementById('firstYearValue').value = '$' + Math.round(firstYearValue);
+        document.getElementById('firstYearValue').style.color = firstYearValue >= 0 ? 'black' : 'red';
+
+        document.getElementById('secondYearValue').value = '$' + Math.round(secondYearValue);
+        document.getElementById('secondYearValue').style.color = secondYearValue >= 0 ? 'black' : 'red';
 
         document.getElementById('section3').classList.add('hidden');
         document.getElementById('section4').classList.remove('hidden');
